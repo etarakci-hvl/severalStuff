@@ -76,7 +76,8 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
 
-
+Unity arayüzünü ve algoritmanın çalıştırıldığı andan bir görüntü(beyaz eğri mouse ile seçmek isteyebileceğimiz konumu gösterir.): 
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture1.PNG" width="600"> <br/><br/>
 Hedeflenen konuma gitmekte olan araca dair bir görüntü: <br/><br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="600"> <br/><br/>
 Etraftaki engellere dikkat edecek şekilde; takip edilebilecek güzergahların keşfine dair görüntü: <br/><br/>
@@ -85,6 +86,5 @@ Etraftaki engellere dikkat edecek şekilde; takip edilebilecek güzergahların k
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
 2. **...\Self-driving-vehicle\Self-driving vehicle Unity\Assets** altında bulunan **self-driving.unity** dosyası Unity ile açılır. 
-
 
 **Ebrar Demirbaş & Emrecan Tarakçı**
