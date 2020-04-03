@@ -5,8 +5,18 @@ Hybrid A* yaklaşımını gerçekleyen, Linux ve Windows üzerinde çalışan ik
 
 
 ## 1. Linux Tarafında Çalışılan Yaklaşım
+Bu çalışmanın amacı, nonholonomic araştırma için, real-time bir yol planlama algoritması oluşturmak ve görselleştirmektir.
+Algoritma, input olarak araca monte edilen LIDAR tarafından oluşturulan binary engel haritalarını kullanmaktadır.
+Algoritma C++ ile geliştirilmiş, ROS platformunda çalıştırılmış ve RViz programı ile görselleştirilmiş/simüle edilmiştir.
+Kodun alındığı GitHub bağlantısı :  https://github.com/karlkurzer/path_planner <br/>
 
-Burada bir giriş yapılmalı.
+Temel özellikler:
+* Her bir cell başına 72 farklı heading (5° discretization)
+* Kısıtlı Sezgisel (Constrained Heuristic) - engelsiz nonholonomic 
+* Kısıtsız Sezgisel (Unconstrained Heuristic) - engel bulunan holonomic
+* Dubin's Shot
+* C++ real-time uygulama (~10Hz)
+Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştır.
 
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
@@ -23,7 +33,7 @@ sudo apt-get install ros-kinetic-map-server
 sudo apt install libompl-dev
 ```
 3. Catkin workspace oluşturulmalı ve kodlar workspace'e klonlanmalıdır :
-``` 
+```
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 git clone https://github.com/karlkurzer/path_planner.git
@@ -43,9 +53,20 @@ roslaunch hybrid_astar manual.launch
 * home/catkin_ws/src/path_planner/maps klasörü içinden istenilen haritanın ismi, map.yaml dosyası içindeki image:... kısmına yazılarak kaydedilmelidir.
 * Tekrar 3. adımdaki roslaunch işlemi yapıldığında, yeni harita görülecektir.
 
+## Uygulamanın İncelenmesi
+RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
+demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
+![Png1](images/demomap1.png)
+Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
+![Png2](images/demomap2.png)
+Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
+Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
+![Png3](images/mazemap.png)
+![Png4](images/parkinglot.png)
+
 
 ## 2. Windows Tarafında Çalışılan Yaklaşım
-Bu kısımdaki çalışmalar, Windows 8.1 ve Unity 2018.4.20f1 simülasyon çevresi üzerinde yürütülmüştür.  
+Bu kısımdaki çalışmalar, Windows 8.1 ve Unity 2018.4.20f1 simülasyon çevresi üzerinde yürütülmüştür. 
 Kodun alındığı GitHub bağlantısı: https://github.com/Habrador/Self-driving-vehicle <br/>
 Çalışmanın özetini içeren YouTube bağlantısı: https://www.youtube.com/watch?v=L591fS51F4I <br/>
 Çalışmaya dair bazı notların paylaşıldığı Blog paylaşımı:  https://blog.habrador.com/2015/11/explaining-hybrid-star-pathfinding.html <br/>
@@ -58,7 +79,7 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
 Figür x: Hedeflenen Konuma Gitmekte Olan Araç. <br/><br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
-Figür x+1: Etraftaki Engellere Dikkat Edecek Şekilde, Takip Edilebilecek Güzergahların Keşfi.
+Figür x+1: Etraftaki Engellere Dikkat Ederek Takip Edilebilecek Güzergahların Keşfi.
 
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
