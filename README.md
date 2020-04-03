@@ -47,6 +47,8 @@ Kodun alındığı GitHub bağlantısı: https://github.com/Habrador/Self-drivin
 Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'lere dikkat çekilmiştir. Öklidyen Mesafe, Reeds-Shepp Güzergahı ve Flowfield *Heuristic*'leri arasından en büyüğünün kaale alınması gerektiği, geliştirici tarafından not düşülmüştür. Ayrıca, Voronoi Mozaiklerini temel alan Voronoi Alanlarının kullanımının, haritadaki engellerden (obstacle) kaçınma hususunda başarımı yüksek bir çözüm sunduğu görülmüştür. Algoritmanın oluşturduğu güzergahın, ilk hali itibarıyla pürüzsüz bir eğri formatına uzak olduğu belirtilmiş, takip edilebilir bir güzergah eğrisi edinmek için oluşturulan eğriye bir smoothing (yumuşatma) operasyonu uygulanması gerektiğinden bahsedilmiştir. Aracın güzergahı takip etmesi için PID Controller kullanılmıştır.
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="200">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="200">
 
 ![Win_Image_1](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG)
 ![Win_Image_2](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG)
