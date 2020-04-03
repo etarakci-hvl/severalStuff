@@ -20,12 +20,12 @@ Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştı
 
 #### Uygulamanın İncelenmesi
 RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
-demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
+demo haritada algoritma çalışır ve iki nokta arasında path oluşur. <br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap1.png" width="600">
-Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
+Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.<br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap2.png" width="600">
 Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
-Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
+Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.<br/>
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/mazemap.png" width="600">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkinglot.png" width="600">
