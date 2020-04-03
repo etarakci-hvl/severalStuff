@@ -21,13 +21,14 @@ Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştı
 #### Uygulamanın İncelenmesi
 RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
 demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap1.PNG" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap1.png" width="400">
 Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap2.PNG" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap2.png" width="400">
 Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
 Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/mazemap.PNG" width="400">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkingplot.PNG" width="400">
+
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/mazemap.png" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkingplot.png" width="400">
 
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
