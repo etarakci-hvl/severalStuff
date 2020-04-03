@@ -8,16 +8,17 @@ Son olarak, Hybrid A* algoritması, aracın hızını hesaba katmaz. Lakin, algo
 ## 1. Linux Tarafında Çalışılan Yaklaşım
 Bu çalışmanın amacı, nonholonomic araştırma için, real-time bir yol planlama algoritması oluşturmak ve görselleştirmektir.
 Algoritma, input olarak araca monte edilen LIDAR tarafından oluşturulan binary engel haritalarını kullanmaktadır.
-Algoritma C++ ile geliştirilmiş, ROS platformunda çalıştırılmış ve RViz programı ile görselleştirilmiş/simüle edilmiştir.
+Algoritma C++ ile geliştirilmiş, ROS platformunda çalıştırılmış ve RViz programı ile görselleştirilmiş/simüle edilmiştir.  
+Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştır.
+
 Kodun alındığı GitHub bağlantısı :  https://github.com/karlkurzer/path_planner <br/>
 
 Temel özellikler:
 * Her bir cell başına 72 farklı heading (5° discretization)
-* Kısıtlı Sezgisel (Constrained Heuristic) - engelsiz nonholonomic 
-* Kısıtsız Sezgisel (Unconstrained Heuristic) - engel bulunan holonomic
+* Kısıtlı Sezgisel (Constrained Heuristic) - nonholonomic without obstacles 
+* Kısıtsız Sezgisel (Unconstrained Heuristic) - holonomic with obstacles
 * Dubin's Shot
 * C++ real-time uygulama (~10Hz)
-Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştır.
 
 #### Uygulamanın İncelenmesi
 RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirlenir, 
