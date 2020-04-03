@@ -23,7 +23,7 @@ sudo apt-get install ros-kinetic-map-server
 sudo apt install libompl-dev
 ```
 3. Catkin workspace oluşturulmalı ve kodlar workspace'e klonlanmalıdır :
-```
+``` 
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 git clone https://github.com/karlkurzer/path_planner.git
