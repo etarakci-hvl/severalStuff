@@ -11,28 +11,28 @@ Burada bir giriş yapılmalı.
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
 ROS Melodic için : 
-**sudo apt-get install ros-melodic-map-server**
+```
+sudo apt-get install ros-melodic-map-server
+```
 ROS Kinetic için : 
-**sudo apt-get install ros-kinetic-map-server**
+```
+sudo apt-get install ros-kinetic-map-server
+```
 2. Open Motion Planning Library (OMPL) kurulmalıdır :
-**sudo apt install libompl-dev**
+```
+sudo apt install libompl-dev
+```
 3. Catkin workspace oluşturulmalı ve kodlar workspace'e klonlanmalıdır :
-**mkdir -p ~/catkin_ws/src**
-
-**cd ~/catkin_ws/src**
-
-**git clone https://github.com/karlkurzer/path_planner.git**
-
-**cd .\.**
-
-**catkin_make**
-
-**source devel/setup.bash**
-
-**rospack profile**
-
-**roslaunch hybrid_astar manual.launch**
-
+```
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+git clone https://github.com/karlkurzer/path_planner.git
+cd .\.
+catkin_make
+source devel/setup.bash
+rospack profile
+roslaunch hybrid_astar manual.launch
+```
 4. Bu adımlardan sonra Rviz ekranı açılacaktır.
 * Rviz'de map_demo haritası gelecektir. Harita maus ile kontrol edilebilir.
 * 2D Pose Estimate ile haritanın herhangi bir yerinde başlangıç noktası belirlenmelidir. 
