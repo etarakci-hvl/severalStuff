@@ -47,11 +47,11 @@ Kodun alındığı GitHub bağlantısı: https://github.com/Habrador/Self-drivin
 Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'lere dikkat çekilmiştir. Öklidyen Mesafe, Reeds-Shepp Güzergahı ve Flowfield *Heuristic*'leri arasından en büyüğünün kaale alınması gerektiği, geliştirici tarafından not düşülmüştür. Ayrıca, Voronoi Mozaiklerini temel alan Voronoi Alanlarının kullanımının, haritadaki engellerden (obstacle) kaçınma hususunda başarımı yüksek bir çözüm sunduğu görülmüştür. Algoritmanın oluşturduğu güzergahın, ilk hali itibarıyla pürüzsüz bir eğri formatına uzak olduğu belirtilmiş, takip edilebilir bir güzergah eğrisi edinmek için oluşturulan eğriye bir smoothing (yumuşatma) operasyonu uygulanması gerektiğinden bahsedilmiştir. Aracın güzergahı takip etmesi için PID Controller kullanılmıştır.
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
-![Win_Image_1](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG =450x)
-![Win_Image_2](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG =450x)
 
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
+Görsel x: Hedeflenen Konuma Gitmekte Olan Araç.
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
+Görsel x+1: Etraftaki engellere dikkat ederek takip edilebilecek güzergahların keşfi.
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
 2. **...\Self-driving-vehicle\Self-driving vehicle Unity\Assets** altında bulunan **self-driving.unity** dosyası Unity ile açılır. 
