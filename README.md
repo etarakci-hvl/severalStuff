@@ -1,7 +1,8 @@
 # Hybrid A* Uygulamaları
 Hybrid A* yaklaşımını gerçekleyen, Linux ve Windows üzerinde çalışan iki adet uygulamaya dair notlar bu dokümanda özetlenmiştir. Kurulum ve çalıştırma aşamasında, işletim sistemlerinin yarattığı bir takım farklılıklar mevcuttur. Bu yüzden, dokümanın devamında, kurulum ve değerlendirme süreci iki ayrı alt başlıkta tariflenmiştir. 
 ## Hybrid A* Algoritması
-
+[Hybrid A* Algoritması](https://ai.stanford.edu/~ddolgov/papers/dolgov_gpp_stair08.pdf), A* algoritmasının bir türevi olup, orijinal algoritmaya benzerlikler göstermektedir. Ana farklılık ise, Hybrid A* algoritmasında, durum geçişleri (state transitions) *continuous space* üzerinde gerçekleşir. Oysa ki bu durum geçişleri, A* algoritmasında *discrete space*'te gerçekleşmektedir. Genelde bu alanda yaşanan sıkıntı, güzergah planlama algoritmalarının *Non-holonomic* robotlarda, takip edilmesi güç rotalar (smooth olmayan) üretmesidir. Hybrid A* Algoritmasının çözümlemeye çalıştığı sorun budur. Ayrıca, Continuous Search Space sonlu olmayacağından, grid tabanlı bir hücreselleştirmeye gidilerek, çizgenin büyümesi limitlenir. Burada mühim olan, oluşturulan çizgenin vertekslerinin grid dahilindeki herhangi bir continuous noktaya ulaşabileceğidir. Her bir state *s = (x, y, θ)*; *x*, *y* pozisyon değerlerinden ve verteksin yöneliminden(*θ*) oluşmaktadır. Yani verilen bir verteks için *s* her biçime girebilir. Fakat, *non-holonomic constraints* hesaba katıldığında, bir verteks üç ayrı aksiyon alabilmektedir: *maximum steering left*, *maximum steering right* ve *no steering*.
+Son olarak, Hybrid A* algoritması, aracın hızını hesaba katmaz. Lakin, algoritmanın sağladığı güzergahı takip ederken, uygun bir hız profili oluşturulabilir.
 
 
 ## 1. Linux Tarafında Çalışılan Yaklaşım
