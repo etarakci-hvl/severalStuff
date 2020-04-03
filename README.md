@@ -48,11 +48,11 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
 
-![Drag Racing](C:\Users\Emrecan\Documents\GitHub\severalStuff\Capture.jpg)
-![Drag Racing](C:\Users\Emrecan\Documents\GitHub\severalStuff\Capture2.jpg)
-![Drag Racing](C:\Users\Emrecan\Documents\GitHub\severalStuff\Capture3.jpg)
-![Drag Racing](C:\Users\Emrecan\Documents\GitHub\severalStuff\Capture4.jpg)
-![Drag Racing](C:\Users\Emrecan\Documents\GitHub\severalStuff\Capture5.jpg)
+![Drag Racing](\severalStuff\Capture.jpg)
+![Drag Racing](\severalStuff\Capture2.jpg)
+![Drag Racing](Capture3.jpg)
+![Drag Racing](Capture4.jpg)
+![Drag Racing](Capture5.jpg)
 
 #### Windows İçin Geliştiril
 en Uygulama Nasıl Çalıştırılır?
