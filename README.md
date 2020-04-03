@@ -50,8 +50,10 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
 Görsel x: Hedeflenen Konuma Gitmekte Olan Araç.
+
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
-Görsel x+1: Etraftaki engellere dikkat ederek takip edilebilecek güzergahların keşfi.
+Görsel x+1: Etraftaki Engellere Dikkat Ederek Takip Edilebilecek Güzergahların Keşfi.
+
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
 2. **...\Self-driving-vehicle\Self-driving vehicle Unity\Assets** altında bulunan **self-driving.unity** dosyası Unity ile açılır. 
