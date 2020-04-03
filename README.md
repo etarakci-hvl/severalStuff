@@ -58,7 +58,7 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
 Figür x: Hedeflenen Konuma Gitmekte Olan Araç. <br/><br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
-Figür x+1: Etraftaki Engellere Dikkat Ederek Takip Edilebilecek Güzergahların Keşfi.
+Figür x+1: Etraftaki Engellere Dikkat Edecek Şekilde, Takip Edilebilecek Güzergahların Keşfi.
 
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
