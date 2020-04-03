@@ -46,9 +46,9 @@ roslaunch hybrid_astar manual.launch
 
 ## 2. Windows Tarafında Çalışılan Yaklaşım
 Bu kısımdaki çalışmalar, Windows 8.1 ve Unity 2018.4.20f1 simülasyon çevresi üzerinde yürütülmüştür.  
-Kodun alındığı GitHub bağlantısı: https://github.com/Habrador/Self-driving-vehicle
-Çalışmanın özetini içeren YouTube bağlantısı: https://www.youtube.com/watch?v=L591fS51F4I
-Çalışmaya dair bazı notların paylaşıldığı Blog paylaşımı:  https://blog.habrador.com/2015/11/explaining-hybrid-star-pathfinding.html
+Kodun alındığı GitHub bağlantısı: https://github.com/Habrador/Self-driving-vehicle <br/>
+Çalışmanın özetini içeren YouTube bağlantısı: https://www.youtube.com/watch?v=L591fS51F4I <br/>
+Çalışmaya dair bazı notların paylaşıldığı Blog paylaşımı:  https://blog.habrador.com/2015/11/explaining-hybrid-star-pathfinding.html <br/>
 
 #### Uygulamanın İncelemesi
 Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'lere dikkat çekilmiştir. Öklidyen Mesafe, Reeds-Shepp Güzergahı ve Flowfield *Heuristic*'leri arasından en büyüğünün kaale alınması gerektiği, geliştirici tarafından not düşülmüştür. Ayrıca, Voronoi Mozaiklerini temel alan Voronoi Alanlarının kullanımının, haritadaki engellerden (obstacle) kaçınma hususunda başarımı yüksek bir çözüm sunduğu görülmüştür. Algoritmanın oluşturduğu güzergahın, ilk hali itibarıyla pürüzsüz bir eğri formatına uzak olduğu belirtilmiş, takip edilebilir bir güzergah eğrisi edinmek için oluşturulan eğriye bir smoothing (yumuşatma) operasyonu uygulanması gerektiğinden bahsedilmiştir. Aracın güzergahı takip etmesi için PID Controller kullanılmıştır.
