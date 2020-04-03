@@ -21,14 +21,14 @@ Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştı
 #### Uygulamanın İncelenmesi
 RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
 demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap1.png" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap1.png" width="600">
 Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap2.png" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/demomap2.png" width="600">
 Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
 Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/mazemap.png" width="400">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkingplot.png" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/mazemap.png" width="600">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkinglot.png" width="600">
 
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
@@ -76,9 +76,9 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="600">
 Figür x: Hedeflenen Konuma Gitmekte Olan Araç. <br/><br/>
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="600">
 Figür x+1: Etraftaki Engellere Dikkat Ederek Takip Edilebilecek Güzergahların Keşfi.
 
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
