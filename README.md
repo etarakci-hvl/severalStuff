@@ -49,8 +49,8 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
-![Win_Image_1](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG=450x)
-![Win_Image_2](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG=450x)
+![Win_Image_1](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG =450x)
+![Win_Image_2](https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG =450x)
 
 #### Windows İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
