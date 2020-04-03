@@ -18,6 +18,17 @@ Temel özellikler:
 * C++ real-time uygulama (~10Hz)
 Uygulama path planning algoritması olarak hybrid A* algoritması kullanmıştır.
 
+#### Uygulamanın İncelenmesi
+RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
+demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
+![Png1](images/demomap1.png)
+Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
+![Png2](images/demomap2.png)
+Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
+Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
+![Png3](images/mazemap.png)
+![Png4](images/parkinglot.png)
+
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
 1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
 ROS Melodic için : 
@@ -52,18 +63,6 @@ roslaunch hybrid_astar manual.launch
 5. Algoritmayı farklı haritalarda denemek için : 
 * home/catkin_ws/src/path_planner/maps klasörü içinden istenilen haritanın ismi, map.yaml dosyası içindeki image:... kısmına yazılarak kaydedilmelidir.
 * Tekrar 3. adımdaki roslaunch işlemi yapıldığında, yeni harita görülecektir.
-
-## Uygulamanın İncelenmesi
-RViz platformu açıldıktan sonra 2D Pose Estimate ile başlangıç noktası, 2D Nav Goal ile hedef nokta belirleniir, 
-demo haritada algoritma çalışır ve iki nokta arasında path oluşur. 
-![Png1](images/demomap1.png)
-Tekrar farklı iki nokta belirleyip değişik senaryolar denenebilir.
-![Png2](images/demomap2.png)
-Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzerinde algoritma denenebilir.
-Örneğin labirent şeklinde bir haritada ve park alanında algoritmanın nasıl davranacağı görülebilir.
-![Png3](images/mazemap.png)
-![Png4](images/parkinglot.png)
-
 
 ## 2. Windows Tarafında Çalışılan Yaklaşım
 Bu kısımdaki çalışmalar, Windows 8.1 ve Unity 2018.4.20f1 simülasyon çevresi üzerinde yürütülmüştür. 
