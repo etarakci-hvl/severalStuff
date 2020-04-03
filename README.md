@@ -76,7 +76,7 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 Çalışılan araç tiplerinden bahsetmek gerekirse; Araba, Kamyon ve Tır için deneysel bir ortam oluşturulmuştur. İlk iki araç için algoritma dahilinde bir problem gözlenmezken, Tır'a dair önerilen çözümde bir takım eksiklikler olduğu gözlenmiştir. Geliştirici de Tır özelinde, bazı eksiklikler olduğunu not düşmüştür. 
 
-Unity arayüzünü ve algoritmanın çalıştırıldığı andan bir görüntü(beyaz eğri mouse ile seçmek isteyebileceğimiz konumu gösterir.): 
+Unity arayüzünü ve algoritmanın çalıştırıldığı bir anı gösteren görüntü (beyaz eğri mouse ile seçmek isteyebileceğimiz konuma çizilem güzergahı gösterir.):<br/><br/
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture1.PNG" width="600"> <br/><br/>
 Hedeflenen konuma gitmekte olan araca dair bir görüntü: <br/><br/>
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="600"> <br/><br/>
