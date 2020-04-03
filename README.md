@@ -50,7 +50,7 @@ Hybrid A* Algoritmasının uygulanmasında kullanılması gereken *Heuristic*'le
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture2.PNG" width="400">
 Görsel x: Hedeflenen Konuma Gitmekte Olan Araç.
-
+&nbsp
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/Capture3.PNG" width="400">
 Görsel x+1: Etraftaki Engellere Dikkat Ederek Takip Edilebilecek Güzergahların Keşfi.
 
