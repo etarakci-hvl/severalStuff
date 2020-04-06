@@ -90,19 +90,17 @@ Etraftaki engellere dikkat edecek şekilde; takip edilebilecek güzergahların k
 2. **...\Self-driving-vehicle\Self-driving vehicle Unity\Assets** altında bulunan **self-driving.unity** dosyası Unity ile açılır. 
 
 #### 3. Hybrid A* Algoritmasının Çalışması İçin Gereken Ana Girdiler
-
 Kullanılan *Heuristic*'lerin bekledikleri girdiler şu şekildedir:
-
-``` 
-- Euclidean Distance - Initial Position [x, y], Goal Position [x', y']. 
-- Flow field (8 neighbors: North(N), East(E), West(W), South(S), and SE, SW, NE, NW) with obstacles Initial Position [x, y, cost = 0], Goal Position(x', y', cost' = ?) 
-- Reeds-Shepp paths - Initial Position with Orientation [x, y, Θ], Goal Position with Orientation [x', y', Θ']
 ```
-
-* Sensörler (örn: Lidar ve/veya Radar) tarafından oluşturulan *obstacle(engel)* haritaları kullanılmalıdır. Burada engeller yalnızca katı cisimler olarak addedilmemelidir. Bir başka sensörün (örn: Kamera) tespit edeceği *su birikintisi*, *çukur*, *çamurlu yol* veya *toprak yol*; belirtilen *Heuristic*'ler kapsamında maliyetlendirilebilir ve algoritmanın kaçınması sağlanabilir.  
-* Dünya modeline yansıtılacak çevredeki engellerin konum bilgilerine ek olarak, naşlangıç ve hedef noktasının konum bilgisi ve aracın oryantasyonu sağlanmalıdır. Haliyle, *current position*'ı edinmek adına bir lokalizasyon çıktısı gerekmektedir. 
-
-
+- Euclidean Distance - Initial Position [x, y], Goal Position [x', y'].
+- Flow field (8 neighbors: North(N), East(E), West(W), South(S), and SE, SW, NE, NW) with obstacles Initial Position [x, y, cost = 0], Goal Position(x', y', cost' = ?)
+- Reeds-Shepp paths - Initial Position with Orientation [x, y, Θ], Goal Position with Orientation [x', y', Θ']
+- Dubin's Path - Initial Position with Orientation [x, y, Θ], Goal Position with Orientation [x', y', Θ'], turning radius of velocity (ρ) = forward velocity / maximum angular velocity
+```
+* Aracın dönüş mekanizmasına tam anlamıyla hakim olmak için, kullanılacak aracın boyut bilgisi, keza *bicycle model* olarak isimlendirilen ve araçların dönüş mekanizmasını sade bir şekilde modelleyen yaklaşımın temellendirildiği arka aksın ve ön aksın konumları ve tekerlerin birbirine olan mesafeleri bilinmelidir.
+* Çevrenin, *grid* tabanlı *discretization*'ını yapmak adına, modellenen çevrenin kısımlara ayrılmasını sağlayacak bir yaklaşım gerekmektedir. Bu yaklaşım sağlandığı takdirde, hesaplama maliyeti ziyadesiyle azalacaktır.
+* Sensörler (örn: Lidar ve/veya Radar) tarafından oluşturulan *obstacle(engel)* haritaları kullanılmalıdır. Burada engeller yalnızca katı cisimler olarak addedilmemelidir. Bir başka sensörün (örn: Kamera) tespit edeceği *su birikintisi*, *çukur*, *çamurlu yol* veya *toprak yol*; belirtilen *Heuristic*'ler kapsamında maliyetlendirilebilir ve algoritmanın kaçınması sağlanabilir.
+* Dünya modeline yansıtılacak çevredeki engellerin konum bilgilerine ek olarak, başlangıç ve hedef noktasının konum bilgisi ve aracın oryantasyonu sağlanmalıdır. Haliyle, *current position*'ı edinmek adına bir lokalizasyon çıktısı gerekmektedir. 
 
 **Ebrar Demirbaş & Emrecan Tarakçı**
 
