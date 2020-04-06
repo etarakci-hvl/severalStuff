@@ -3,7 +3,7 @@ Hybrid A* yaklaşımını gerçekleyen, Linux ve Windows üzerinde çalışan ik
 ## Hybrid A* Algoritması
 [Hybrid A* Algoritması](https://ai.stanford.edu/~ddolgov/papers/dolgov_gpp_stair08.pdf), A* algoritmasının bir türevi olup, orijinal algoritmaya benzerlikler göstermektedir. Ana farklılık ise, Hybrid A* algoritmasında, durum geçişleri (state transitions) *continuous space* üzerinde gerçekleşir. Oysa ki bu durum geçişleri, A* algoritmasında *discrete space*'te gerçekleşmektedir. Genelde bu alanda yaşanan sıkıntı, güzergah planlama algoritmalarının *Non-holonomic* robotlarda, takip edilmesi güç rotalar (smooth olmayan) üretmesidir. Hybrid A* Algoritmasının çözümlemeye çalıştığı sorun budur. Ayrıca, Continuous Search Space sonlu olmayacağından, grid tabanlı bir hücreselleştirmeye gidilerek, çizgenin büyümesi limitlenir. Burada mühim olan, oluşturulan çizgenin vertekslerinin grid dahilindeki herhangi bir continuous noktaya ulaşabileceğidir. Her bir state *s = (x, y, θ)*; *x*, *y* pozisyon değerlerinden ve verteksin yöneliminden(*θ*) oluşmaktadır. Yani verilen bir verteks için *s* her biçime girebilir. Fakat, *non-holonomic constraints* hesaba katıldığında, bir verteks üç ayrı aksiyon alabilmektedir: *maximum steering left*, *maximum steering right* ve *no steering*.
 Son olarak, Hybrid A* algoritması, aracın hızını hesaba katmaz. Lakin, algoritmanın sağladığı güzergahı takip ederken, uygun bir hız profili oluşturulabilir.
-
+Ayrıca, A* algoritması orta/uzun mesafeyi planlama adına da kullanılabilir. Bu durumda, yakın mesafeyi daha seri çalışan bir algoritma (RRT*) ile hesaplayıp, ana rota olarak Hybrid A*'ın uygun gördüğü rotayı baz rota olarak kullanabiliriz.
 
 ## 1. Linux Tarafında Çalışılan Yaklaşım
 Bu çalışmanın amacı, nonholonomic araştırma için, real-time bir yol planlama algoritması oluşturmak ve görselleştirmektir.
@@ -33,7 +33,7 @@ Nasıl çalıştırılır kısmında belirtildiği gibi farklı haritalar üzeri
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/parkinglot.png" width="600">
 
 #### Linux İçin Geliştirilen Uygulama Nasıl Çalıştırılır?
-1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdır : 
+1. İlk olarak ROS map kullanımı için ros_map_server kurulmalıdırheur : 
 ROS Melodic için : 
 ```
 sudo apt-get install ros-melodic-map-server
@@ -89,4 +89,21 @@ Etraftaki engellere dikkat edecek şekilde; takip edilebilecek güzergahların k
 1. Uygulamaya dair dosyalar, https://github.com/etarakci-hvl/Self-driving-vehicle üzerinden clone'lanır.
 2. **...\Self-driving-vehicle\Self-driving vehicle Unity\Assets** altında bulunan **self-driving.unity** dosyası Unity ile açılır. 
 
+#### 3. Hybrid A* Algoritmasının Çalışması İçin Gereken Ana Girdiler
+
+Kullanılan *Heuristic*'lerin bekledikleri girdiler şu şekildedir:
+
+``` 
+- Euclidean Distance - Initial Position [x, y], Goal Position [x', y']. 
+- Flow field (8 neighbors: North(N), East(E), West(W), South(S), and SE, SW, NE, NW) with obstacles Initial Position [x, y, cost = 0], Goal Position(x', y', cost' = ?) 
+- Reeds-Shepp paths - Initial Position with Orientation [x, y, Θ], Goal Position with Orientation [x', y', Θ']
+```
+
+* Sensörler (örn: Lidar ve/veya Radar) tarafından oluşturulan *obstacle(engel)* haritaları kullanılmalıdır. Burada engeller yalnızca katı cisimler olarak addedilmemelidir. Bir başka sensörün (örn: Kamera) tespit edeceği *su birikintisi*, *çukur*, *çamurlu yol* veya *toprak yol*; belirtilen *Heuristic*'ler kapsamında maliyetlendirilebilir ve algoritmanın kaçınması sağlanabilir.  
+* Dünya modeline yansıtılacak çevredeki engellerin konum bilgilerine ek olarak, naşlangıç ve hedef noktasının konum bilgisi ve aracın oryantasyonu sağlanmalıdır. Haliyle, *current position*'ı edinmek adına bir lokalizasyon çıktısı gerekmektedir. 
+
+
+
 **Ebrar Demirbaş & Emrecan Tarakçı**
+
+
