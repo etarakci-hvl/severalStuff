@@ -21,12 +21,13 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
 Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
 
-*RRT Algoritmasi:* 
+**RRT Algoritmasi:**  Kademeli artan ornekleme tabanli algoritmalar tekil-sorgu icin gelistirilmislerdir. Gercek zamanli uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasidir. Olasiliksal olarak *complete* olduklari gosterilen bu algoritmanin bir diger ozelligi, hata olasiliginin *exponential decay*'e sahip olmasidir. 
 
-*RRG Algoritmasi:* 
+**RRG Algoritmasi:** 
+Kademeli artan ornekleme tabanli algoritmalara bir diger ornek ise RRG algoritmasidir. Linear Temporal Logic kullanimi ve deterministik µ-calculus  ile verilen spesifikasyonlari yonetir. Kademeli olarak artacak sekilde uretilen rotalar cizge veri yapisi icerisinde tutulur. RRG tarafindan donen en iyi rotanin maliyeti neredeyse her zaman optimuma yakinsar.
 
-*RRT\* Algoritmasi:* 
-
+**RRT\* Algoritmasi:** 
+RRT* algoritmasini, RRG algoritmasinin agac tabanli versiyonu olarak dusunmek mumkundur.
   
 #### Uygulamaya Dair Bazi Notlar
 
