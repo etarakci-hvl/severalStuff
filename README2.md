@@ -1,0 +1,46 @@
+## RRT, RRG ve Fast RRT* Uygulamaları
+
+Bu calismada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Graph(RRG) ve Rapidly-Exploring Random Tree*(RRT*) algoritmalarina dair uygulamar yer almaktadir. Algoritmayi gercekleyen yazarin bahsettigi uzere bir takim tasarim kararlarindan oturu RRT* algoritmasi standart uygulamaya nazaran ~10 kat hizli calismaktadir. 
+
+Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-star)
+Yararlanilan Makale: [Incremental Sampling-based Algorithms
+for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
+
+
+*RRT Algoritmasi:* 
+
+*RRG Algoritmasi:* 
+
+*RRT\* Algoritmasi:* 
+
+  
+####Uygulamaya Dair Bazi Notlar
+
+Uzay temsili, orjin ve boyut olarak tutulmaktadir((15, 20), (3,3)). Algoritmlarin calismasi icin, cevrede yer alan engellere dair kullanilan bu temsile ek olarak; baslangic durumu, hedef bolge ve engeller haritasi (tum objelere dair Uzay Temsili) gerekmektedir. Asagida ilgili parametrelerin aciklamalari gorulebilir.
+
+##### state_space
+Durum Uzayi, dis dunyanin temsili olarak dusunulmelidr. Yukarida bahsedilen formda algoritmaya saglanir. 
+
+##### starting_state
+Baslangic durumu, rotasi hesaplanacak ajanin baslangic noktasi olarak kabul edilebilir. Bu parametre ajanin orjini ve alani olarak dusunulmelidir.
+##### target_space
+Hedef bolge, varilmak istenen bolge olarak dusunulmustur. Varilmak istenen bolgenin koordinatlari ve alani seklinde dusunulmelidir.
+##### obstacle_map
+Engeller haritasi, durum uzayinda yer alan tum engellerin bilgilerinin barindigi haritadir ve her bir engel icin koordinat-alan ikilisi seklinde tutulmaktadir.
+##### n_samples
+Iterasyon sayisi, algoritmanin uretecegi ornek noktalariyla iliskilidir. Carpisan ve alanin disinda yer alan noktalar da iterasyonlar arasinda yer alacagindan kabul edilebilir orneklerin sayisi *default = 1000* iterasyon sayisindan az olabilir.
+##### granularity
+Oge boyu veya taneciklilik olarak nitelendirilen bu kavram algoritmanin sureci ne kadar detayli ele aldigi olarak dusunulebilir. Kademeli artan carpisma denetlemesi kullanildigindan, taneciklilik kavramina ihtiyac duyulmaktadir . Bu parametrenin detayi artirildiginda, programin yavaslayacagi hatirda tutulmalidir.
+##### d_threshold
+Bu parametre, eldeki dugumden yeni bir nokta ornekleneceginde, orneklenecek noktanin ne kadar uzakta olacagina karar verir.
+
+#### Nasıl Çalıştırılır ? 
+
+* Öncelikle, `conda env create --name FastRRT --file environment.yml` komutuyla gereken kütüphaneler yüklenmelidir ve `conda activate FastRRT` komutuyla çevre aktive edilmedilir.
+
+* Cevre aktive edildikten sonra, terminalde klasörün bulunduğu uzantıya gidilir ve `python Main.py` komutu yurutulur, çıktı olarak RRT* için ve RRT için rastgele olusturulan engellerin ve bu engellere karsi olusturulan rotalara dair 2 adet figür gelecektir.
+
+
+
+
+
