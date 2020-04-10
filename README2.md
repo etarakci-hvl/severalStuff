@@ -8,10 +8,16 @@ Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-
 Yararlanilan Makale: [Incremental Sampling-based Algorithms
 for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
-Kiyas yapilmasi acisindan RRT ve RRT* algoritmalarinin ciktilari asagidadir.
+RRT ve RRT* algoritmalarinin ikili kiyasi asagidadir:
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
+
+
+RRT, RRG ve RRT* algoritmalarinin uclu kiyasi asagidadir:
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT1.png" width="600">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRG1.png" width="600">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar1.png" width="600">
 
 Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
 
