@@ -8,19 +8,6 @@ Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-
 Yararlanilan Makale: [Incremental Sampling-based Algorithms
 for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
-**RRT ve RRT\* algoritmalarinin ikili kiyasi (n_samples=5000) asagidadir:**
-
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
-
-
-**RRT, RRG ve RRT\* algoritmalarinin uclu kiyasi (n_samples=1000) asagidadir:**
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT1.png" width="600">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRG1.png" width="595">
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar1.png" width="600">
-
-Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
-
 **RRT Algoritmasi:**  Kademeli artan ornekleme tabanli algoritmalar tekil-sorgu icin gelistirilmislerdir. Gercek zamanli uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasidir. Olasiliksal olarak *complete* olduklari gosterilen bu algoritmanin bir diger ozelligi, hata olasiliginin *exponential decay*'e sahip olmasidir. 
 
 **RRG Algoritmasi:** 
@@ -48,6 +35,19 @@ Iterasyon sayisi, algoritmanin uretecegi ornek noktalariyla iliskilidir. Carpisa
 Oge boyu veya taneciklilik olarak nitelendirilen bu kavram algoritmanin sureci ne kadar detayli ele aldigi olarak dusunulebilir. Kademeli artan carpisma denetlemesi kullanildigindan, taneciklilik kavramina ihtiyac duyulmaktadir . Bu parametrenin detayi artirildiginda, programin yavaslayacagi hatirda tutulmalidir.
 ##### d_threshold
 Bu parametre, eldeki dugumden yeni bir nokta ornekleneceginde, orneklenecek noktanin ne kadar uzakta olacagina karar verir.
+
+**RRT ve RRT\* algoritmalarinin ikili kiyasi (n_samples=5000) asagidadir:**
+
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
+
+
+**RRT, RRG ve RRT\* algoritmalarinin uclu kiyasi (n_samples=1000) asagidadir:**
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT1.png" width="600">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRG1.png" width="595">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar1.png" width="600">
+
+Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
 
 #### Nasıl Çalıştırılır ? 
 
