@@ -10,7 +10,7 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
 Kiyas yapilmasi acisindan RRT ve RRT* algoritmalarinin ciktilari asagidadir.
 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="600">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="550">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
 
 Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
@@ -47,3 +47,8 @@ Bu parametre, eldeki dugumden yeni bir nokta ornekleneceginde, orneklenecek nokt
 * Öncelikle, `conda env create --name FastRRT --file environment.yml` komutuyla gereken kütüphaneler yüklenmelidir ve `conda activate FastRRT` komutuyla çevre aktive edilmedilir.
 
 * Cevre aktive edildikten sonra, terminalde klasörün bulunduğu uzantıya gidilir ve `python Main.py` komutu yurutulur, çıktı olarak RRT* için ve RRT için rastgele olusturulan engellerin ve bu engellere karsi olusturulan rotalara dair 2 adet figür gelecektir.
+
+
+
+
+
