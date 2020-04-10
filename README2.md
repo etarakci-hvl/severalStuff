@@ -3,6 +3,7 @@
 Bu calismada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Graph(RRG) ve Rapidly-Exploring Random Tree*(RRT*) algoritmalarina dair uygulamar yer almaktadir. Algoritmayi gercekleyen yazarin bahsettigi uzere bir takim tasarim kararlarindan oturu RRT* algoritmasi standart uygulamaya nazaran ~10 kat hizli calismaktadir. 
 
 Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-star)
+
 Yararlanilan Makale: [Incremental Sampling-based Algorithms
 for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
@@ -14,7 +15,7 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 *RRT\* Algoritmasi:* 
 
   
-####Uygulamaya Dair Bazi Notlar
+#### Uygulamaya Dair Bazi Notlar
 
 Uzay temsili, orjin ve boyut olarak tutulmaktadir((15, 20), (3,3)). Algoritmlarin calismasi icin, cevrede yer alan engellere dair kullanilan bu temsile ek olarak; baslangic durumu, hedef bolge ve engeller haritasi (tum objelere dair Uzay Temsili) gerekmektedir. Asagida ilgili parametrelerin aciklamalari gorulebilir.
 
