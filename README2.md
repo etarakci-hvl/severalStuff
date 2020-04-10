@@ -27,8 +27,8 @@ Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama
 Kademeli artan ornekleme tabanli algoritmalara bir diger ornek ise RRG algoritmasidir. Linear Temporal Logic kullanimi ve deterministik µ-calculus  ile verilen spesifikasyonlari yonetir. Kademeli olarak artacak sekilde uretilen rotalar cizge veri yapisi icerisinde tutulur. RRG tarafindan donen en iyi rotanin maliyeti neredeyse her zaman optimuma yakinsar.
 
 **RRT\* Algoritmasi:** 
-RRT* algoritmasini, RRG algoritmasinin agac tabanli versiyonu olarak dusunmek mumkundur.
-  
+RRT* algoritmasini, RRG algoritmasinin agac tabanli versiyonu olarak dusunmek mumkundur. RRG'nin *asymptotic optimality* ozelligini, agac veri yapisini kullanarak gercekleyen bu metodoloji, hali hazirda agacta bulunan dugumlere uzanan en dusuk maliyetli guzergahlari kesfeder. Bunu yaparken kendini yeniden yapilandirir, ***rewire*** eder.
+
 #### Uygulamaya Dair Bazi Notlar
 
 Uzay temsili, orjin ve boyut olarak tutulmaktadir((15, 20), (3,3)). Algoritmlarin calismasi icin, cevrede yer alan engellere dair kullanilan bu temsile ek olarak; baslangic durumu, hedef bolge ve engeller haritasi (tum objelere dair Uzay Temsili) gerekmektedir. Asagida ilgili parametrelerin aciklamalari gorulebilir.
