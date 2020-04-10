@@ -53,5 +53,6 @@ Bu örnek sonuçlara ek olarak, diğer güzergah kıyaslamaları, maliyet ve hes
 
 * Çevre aktive edildikten sonra, terminalde klasörün bulunduğu konuma gidilir ve `python Main.py` komutu yürütülür. Çıktı olarak RRT, RRG ve RRT* algoritmalarını test etmek için rastgele oluşturulan engelli bir harita ve bu engelli haritaya çözüm sunan algoritmalara dair çıktılar barındıran 3 adet figür gelecektir.
 
+**ET&ED**
 
 
