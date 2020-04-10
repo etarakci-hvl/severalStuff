@@ -10,7 +10,7 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
 Kiyas yapilmasi acisindan RRT ve RRT* algoritmalarinin ciktilari asagidadir.
 
-<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="550">
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
 
 Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
