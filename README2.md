@@ -8,13 +8,13 @@ Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-
 Yararlanilan Makale: [Incremental Sampling-based Algorithms
 for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
-**RRT ve RRT\* algoritmalarinin ikili kiyasi asagidadir:**
+**RRT ve RRT\* algoritmalarinin ikili kiyasi (n_samples=5000) asagidadir:**
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
 
 
-**RRT, RRG ve RRT\* algoritmalarinin uclu kiyasi asagidadir:**
+**RRT, RRG ve RRT\* algoritmalarinin uclu kiyasi (n_samples=1000) asagidadir:**
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT1.png" width="600">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRG1.png" width="595">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar1.png" width="600">
