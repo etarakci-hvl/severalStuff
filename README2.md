@@ -1,60 +1,57 @@
 ## RRT, RRG ve Fast RRT* Uygulamaları
 
-Bu calismada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Graph(RRG) ve Rapidly-Exploring Random Tree*(RRT*) algoritmalarina dair uygulamar yer almaktadir. Algoritmayi gercekleyen yazarin bahsettigi uzere bir takim tasarim kararlarindan oturu RRT* algoritmasi standart uygulamaya nazaran ~10 kat hizli calismaktadir. 
-Programin calisma prensibinde rastgele yerlestirilen engellere, baslangic ve bitis noktalarina vurgu yapilmistir. 
+Bu çalışmada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Graph(RRG) ve Rapidly-Exploring Random Tree*(RRT*) algoritmalarına dair uygulamalar yer almaktadır. Algoritmayı gerçekleyen yazarın bahsettiği üzere bir takım tasarım kararlarından ötürü RRT* algoritması standart uygulamaya nazaran ~10 kat hızlı çalışmaktadır. Programın çalışma prensibinde rastgele yerleştirilen engellere, başlangıç ve bitiş noktalarına vurgu yapılmıştır.
 
-Kodun alindigi repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-star)
+Kodun alındığı repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-star)
 
-Yararlanilan Makale: [Incremental Sampling-based Algorithms
+Yararlanılan Makale: [Incremental Sampling-based Algorithms
 for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
 
-**RRT Algoritmasi:**  Kademeli artan ornekleme tabanli algoritmalar tekil-sorgu icin gelistirilmislerdir. Gercek zamanli uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasidir. Olasiliksal olarak *complete* olduklari gosterilen bu algoritmanin bir diger ozelligi, hata olasiliginin *exponential decay*'e sahip olmasidir. 
+**RRT Algoritmasi:**  Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
 
 **RRG Algoritmasi:** 
-Kademeli artan ornekleme tabanli algoritmalara bir diger ornek ise RRG algoritmasidir. Linear Temporal Logic kullanimi ve deterministik µ-calculus  ile verilen spesifikasyonlari yonetir. Kademeli olarak artacak sekilde uretilen rotalar cizge veri yapisi icerisinde tutulur. RRG tarafindan donen en iyi rotanin maliyeti neredeyse her zaman optimuma yakinsar.
+Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algoritmasıdır. Linear Temporal Logic kullanımı ve deterministik µ-calculus ile verilen spesifikasyonları yönetir. Kademeli olarak artacak şekilde üretilen rotalar çizge veri yapısı içerisinde tutulur. RRG tarafından dönen en iyi rotanın maliyeti neredeyse her zaman optimuma yakınsar.
 
 **RRT\* Algoritmasi:** 
-RRT* algoritmasini, RRG algoritmasinin agac tabanli versiyonu olarak dusunmek mumkundur. RRG'nin *asymptotic optimality* ozelligini, agac veri yapisini kullanarak gercekleyen bu metodoloji, hali hazirda agacta bulunan dugumlere uzanan en dusuk maliyetli guzergahlari kesfeder. Bunu yaparken kendini yeniden yapilandirir, ***rewire*** eder.
+RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
 
 #### Uygulamaya Dair Bazi Notlar
 
-Uzay temsili, orjin ve boyut olarak tutulmaktadir((15, 20), (3,3)). Algoritmlarin calismasi icin, cevrede yer alan engellere dair kullanilan bu temsile ek olarak; baslangic durumu, hedef bolge ve engeller haritasi (tum objelere dair Uzay Temsili) gerekmektedir. Asagida ilgili parametrelerin aciklamalari gorulebilir.
+Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmlaarın çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
 
 ##### state_space
-Durum Uzayi, dis dunyanin temsili olarak dusunulmelidr. Yukarida bahsedilen formda algoritmaya saglanir. 
-
+Durum uzayı, dış dünyanın temsili olarak düşünülmelidr. Yukarıda bahsedilen formda algoritmaya sağlanır.
 ##### starting_state
-Baslangic durumu, rotasi hesaplanacak ajanin baslangic noktasi olarak kabul edilebilir. Bu parametre ajanin orjini ve alani olarak dusunulmelidir.
+Başlangıç durumu, rotası hesaplanacak ajanın başlangıç noktası olarak kabul edilebilir. Bu parametre ajanın orjini ve alanı olarak düşünülmelidir.
 ##### target_space
-Hedef bolge, varilmak istenen bolge olarak dusunulmustur. Varilmak istenen bolgenin koordinatlari ve alani seklinde dusunulmelidir.
+Hedef bölge, varılmak istenen bölge olarak tanımlanmıştır. Varılmak istenen bölgenin koordinatları ve alanı şeklinde düşünülmelidir.
 ##### obstacle_map
-Engeller haritasi, durum uzayinda yer alan tum engellerin bilgilerinin barindigi haritadir ve her bir engel icin koordinat-alan ikilisi seklinde tutulmaktadir.
+Engeller haritası, durum uzayında yer alan tüm engellerin bilgilerinin barındığı haritadir ve her bir engel için koordinat-alan ikilisi şeklinde tutulmaktadır.
 ##### n_samples
-Iterasyon sayisi, algoritmanin uretecegi ornek noktalariyla iliskilidir. Carpisan ve alanin disinda yer alan noktalar da iterasyonlar arasinda yer alacagindan kabul edilebilir orneklerin sayisi *default = 1000* iterasyon sayisindan az olabilir.
+Iterasyon sayısı, algoritmanın üreteceği örnek noktalarıyla ilişkilidir. Çarpışan ve alanın dışında yer alan noktalar da iterasyonlar arasında yer alacağından kabul edilebilir örneklerin sayısı *default = 1000* iterasyon sayısından az olabilir.
 ##### granularity
-Oge boyu veya taneciklilik olarak nitelendirilen bu kavram algoritmanin sureci ne kadar detayli ele aldigi olarak dusunulebilir. Kademeli artan carpisma denetlemesi kullanildigindan, taneciklilik kavramina ihtiyac duyulmaktadir . Bu parametrenin detayi artirildiginda, programin yavaslayacagi hatirda tutulmalidir.
+Öge boyu veya taneciklilik olarak nitelendirilen bu kavram algoritmanın süreci ne kadar detaylı ele aldığı şeklinde düşünülebilir. Kademeli artan çarpışma denetlemesi kullanıldığından, taneciklilik kavramına ihtiyaç duyulmaktadır. Bu parametrenin detayı artırıldığında, programın yavaşlayacağı hatırda tutulmalıdır.
 ##### d_threshold
-Bu parametre, eldeki dugumden yeni bir nokta ornekleneceginde, orneklenecek noktanin ne kadar uzakta olacagina karar verir.
+Bu parametre, eldeki düğümden yeni bir nokta örnekleneceğinde, örneklenecek noktanın ne kadar uzakta olacağına karar verir.
 
-**RRT ve RRT\* algoritmalarinin ikili kiyasi (n_samples=5000) asagidadir:**
+**RRT ve RRT\* algoritmalarının ikili kıyası (n_samples=5000) aşağıdadır:**
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT.png" width="580">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar.png" width="600">
 
 
-**RRT, RRG ve RRT\* algoritmalarinin uclu kiyasi (n_samples=1000) asagidadir:**
+**RRT, RRG ve RRT\* algoritmalarının üçlü kıyası (n_samples=1000) aşağıdadır:**
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRT1.png" width="600">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRG1.png" width="595">
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/RRTStar1.png" width="600">
 
-Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama zamani sonuclari *plots* ve *metrics* klasorleri altinda bulunabilir.
+Bu örnek sonuçlara ek olarak, diğer güzergah kıyaslamaları, maliyet ve hesaplama zamanı sonuçları *plots* ve *metrics* klasörleri altında bulunabilir.
 
 #### Nasıl Çalıştırılır ? 
 
 * Öncelikle, `conda env create --name FastRRT --file environment.yml` komutuyla gereken kütüphaneler yüklenmelidir ve `conda activate FastRRT` komutuyla çevre aktive edilmedilir.
 
-* Cevre aktive edildikten sonra, terminalde klasörün bulunduğu konuma gidilir ve `python Main.py` komutu yurutulur. Cıktı olarak RRT, RRG ve RRT* algoritmalarini test etmek için rastgele olusturulan engelli bir harita ve bu engelli haritaya cozum sunan algoritmalara dair ciktilar barindiran 3 adet figur gelecektir.
-
+* Çevre aktive edildikten sonra, terminalde klasörün bulunduğu konuma gidilir ve `python Main.py` komutu yürütülür. Çıktı olarak RRT, RRG ve RRT* algoritmalarını test etmek için rastgele oluşturulan engelli bir harita ve bu engelli haritaya çözüm sunan algoritmalara dair çıktılar barındıran 3 adet figür gelecektir.
 
 
 
