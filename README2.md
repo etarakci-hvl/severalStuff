@@ -53,8 +53,7 @@ Bu ornek sonuclara ek olarak, diger guzergah kiyaslamalari, maliyet ve hesaplama
 
 * Öncelikle, `conda env create --name FastRRT --file environment.yml` komutuyla gereken kütüphaneler yüklenmelidir ve `conda activate FastRRT` komutuyla çevre aktive edilmedilir.
 
-* Cevre aktive edildikten sonra, terminalde klasörün bulunduğu uzantıya gidilir ve `python Main.py` komutu yurutulur, çıktı olarak RRT* için ve RRT için rastgele olusturulan engellerin ve bu engellere karsi olusturulan rotalara dair 2 adet figür gelecektir.
-
+* Cevre aktive edildikten sonra, terminalde klasörün bulunduğu konuma gidilir ve `python Main.py` komutu yurutulur. Cıktı olarak RRT, RRG ve RRT* algoritmalarini test etmek için rastgele olusturulan engelli bir harita ve bu engelli haritaya cozum sunan algoritmalara dair ciktilar barindiran 3 adet figur gelecektir.
 
 
 
