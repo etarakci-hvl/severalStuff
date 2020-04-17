@@ -38,21 +38,38 @@ Bu da daha uzun bir mesafe oluşturması demektir.
 Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algoritmasıdır. Linear Temporal Logic kullanımı ve deterministik µ-calculus ile verilen spesifikasyonları yönetir. Kademeli olarak artacak şekilde üretilen rotalar çizge veri yapısı içerisinde tutulur. RRG tarafından dönen en iyi rotanın maliyeti neredeyse her zaman optimuma yakınsar.
 
 
+y. Informally speaking, the RRT algorithm extends
+the nearest vertex towards the sample. The RRG algorithm first
+extends the nearest vertex, and if such extension is successful,
+it also extends all the vertices returned by the Near procedure,
+producing a graph in general. In both cases, all the extensions
+resulting in collision-free trajectories are added to the graph
+as edges, and their terminal points as new vertices.
+
+
+RRG ve RRT Algoritmalarının Ortak Kısımları:
 ```
-V' <- V; E' <- E;
-x_nearest <- Nearest(G,x);
-x_new <- Steer(x_nearest, x);
-if ObstacleFree(x_nearest, x_new) then
-   V' <- V' U {x_new}; 
-   E' <- E' U {(x_nearest, x_new), (x_new, x_nearest)};
-   X_near <- Near(G, x_new, |V|);
-   for all x_near ∈ X_near do 
-      if ObstacleFree(x_new, x_near) then
-         E' <- E' U {(x_near, x_new),(x_new, x_near)};
-return G' = (V', E')
+V <- {x_init}; E <- ∅; i <- 0;                           // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
+while i < N do                                           // Üst limite varılana kadar:
+   G <- (V,E);                                           // Çizge oluşturulur.
+   x_rand <- Sample(i); i <- i+1;                        // Rastgele nokta belirlenir.
+   (V,E)<-Extend(G,x_rand);                              // Extend_RRG veya Extend_RRT algoritması çağrılabilir.
 ```
-# RRG Algoritması #
-RRG (Rapidly-exploring Random Graphs) yapısı, RRT ile neredeyse aynıdır, farklı olarak RRG algoritası vertexleri genişletir ve bu uzantı başarılı olursa, genel olarak bir grafik oluşturarak yakın prosedür tarafından döndürülen tüm köşeleri de genişletir.
+Extend_RRG(G,x) Algoritması:
+```
+V' <- V; E' <- E;                                        // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
+x_nearest <- Nearest(G,x);                               // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu(Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
+x_new <- Steer(x_nearest, x);                            // Steer fonksiyonunun çıktısı için, birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
+if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında line segment çizilmesine bir engel yoksa: 
+   V' <- V' U {x_new};                                   // Yeni nokta vertex'lere eklenir.
+   E' <- E' U {(x_nearest, x_new), (x_new, x_nearest)};  // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair çift yönlü kenarlar hali hazırda bulunan edge'lere eklenir. 
+   X_near <- Near(G, x_new, |V|);                        // Near; çizge, nokta ve bir sayı alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.    
+   for all x_near ∈ X_near do                            // Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
+      if ObstacleFree(x_new, x_near) then                // Yeni nokta ile vertex arasında bir engel yoksa:
+         E' <- E' U {(x_near, x_new),(x_new, x_near)};   // Hali hazırda vertex kümesine dahil edilmiş olan x_new noktasına diğer vertexlerden kenar çekilebildiği müddetçe, çift yönlü kenarlar bu satırlar kenar listesine eklenir. 
+return G' = (V', E')                                     // Güncellenmiş Çizge döner.
+```
+
 ## RRG algoritmasının izlediği adımlar :
 * bir düğüm oluşturulur.
 * bağlanılacak yeni vertex seçilir.
@@ -62,8 +79,6 @@ RRG (Rapidly-exploring Random Graphs) yapısı, RRT ile neredeyse aynıdır, far
 * eğer yol boş ise yeni bir düğüm belirlenir ve ağaca eklenir.
 * hedef noktaya ulaşıldığında final state güncellenir.
 * eğer yeni final state'in daha küçük cost'u varsa, final state olarak ayarlanır. 
-
-
 
 **RRT\* Algoritması:** 
 RRT*, RRT algoritmasının optimize edilmiş halidir, düğüm sayısı sonsuza yaklaştığında, RRT* algoritması hedef noktası için mümkün olan en kısa yolu verecektir. Ayrıca, RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
