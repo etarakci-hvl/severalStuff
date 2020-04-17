@@ -16,7 +16,7 @@ RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar olu�
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
 
 
-### 1.1. RRT, RRG ve RRT* Algoritmalarının Ortak Kısımlarına Dair Algoritmanın Formal Gösterimi:
+### 1.1. RRT, RRG ve RRT* Algoritmalarının Ortak Kısımlarını Gösteren Algoritmanın Formal Gösterimi:
 ```
 V ← {x_init}; E ← ∅; i ← 0;                    // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
 while i < N do                                 // Üst limite varılana kadar:
@@ -74,25 +74,27 @@ Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğu
 
 ### 3.1. Extend_RRT* Algoritmasının Formal Gösterimi
 ```
-V' ← V ; E' ← E; 
-x_nearest ← Nearest(G,x);
-x_new ← Steer(x_nearest, x);
-if ObstacleFree(x_nearest, x_new) then
-   V' ← V' ∪ {x_new};
-   x_min ← x_nearest;
-   X_near ← Near(G, x_new, |V|);
-   for all x_near ∈ X_near do
-      if ObstacleFree(x_near, x_new) then
-         c' ← Cost(x_near) + c(Line(x_near, x_new)); 
-         if c' < Cost(x_new) then
-            x_min ← x_near;
-   E' ← E' ∪ {(xmin, xnew)};
-   for all x_near ∈ X_near \ {x_min} do
-      if ObstacleFree(x_new, x_near) and Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near)) then
-         x_parent ← Parent (x_near);
-         E' ← E' \ {(x_parent, x_near)};
-         E' ← E' ∪ {(x_new, x_near)}; 
-return G' = (V', E')
+V' ← V ; E' ← E;                                            //
+x_nearest ← Nearest(G,x);                                   //
+x_new ← Steer(x_nearest, x);                                //
+if ObstacleFree(x_nearest, x_new) then                      //                          
+   V' ← V' ∪ {x_new};                                       //
+   x_min ← x_nearest;                                       //
+   X_near ← Near(G, x_new, |V|);                            //
+   for all x_near ∈ X_near do                               //
+      if ObstacleFree(x_near, x_new) then                   //
+         c' ← Cost(x_near) + c(Line(x_near, x_new));        //
+         if c' < Cost(x_new) then                           //
+            x_min ← x_near;                                 //
+   E' ← E' ∪ {(xmin, xnew)};                                //
+   for all x_near ∈ X_near \ {x_min} do                     //
+      if ObstacleFree(x_new, x_near) and                    
+      Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near))   
+      then                                                  //
+         x_parent ← Parent (x_near);                        //
+         E' ← E' \ {(x_parent, x_near)};                    //
+         E' ← E' ∪ {(x_new, x_near)};                       //
+return G' = (V', E')                                        //
 ```
 
 ## 4. Uygulamaya Dair Bazi Notlar
