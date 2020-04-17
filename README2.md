@@ -115,7 +115,9 @@ Bir vertex en küçük cost'lu vertex e bağlandıktan sonra, komşular tekrar i
 Bu özellik yolu daha düzgün hale getirir.
 Grafikleri, RRT'lerden karakteristik olarak farklıdır.
 Özellikle yoğun engel bulunan bir alanda RRT* daha faydalı olacaktır.
-## RRT* Pseudo Code 
+## RRT* Pseudo Code
+
+'''
 Rad=r     // taranacak olan bölgeler için yarıçap belirlenir
 G(V,E)    // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren grafik
 for itr in range(0...n)
@@ -131,7 +133,7 @@ for itr in range(0...n)
             Parent(x') = Xnew
             G+= {Xnew,x'}
    G += Link
-Return G 
+Return G '''
 
 
 
