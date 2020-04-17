@@ -80,8 +80,8 @@ Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğu
 
 #### RRT* Pseudo Code
 ```
-Rad=r     // taranacak olan bölgeler için yarıçap belirlenir
-G(V,E)    // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
+Rad=r                                                  // taranacak olan bölgeler için yarıçap belirlenir
+G(V,E)                                                 // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
 for itr in range(0...n)
    Xnew = RandomPosition()                             // rastgele noktalar oluşturulur.
    If Obstacle(Xnew) == True, try again                // seçilen noktada bir engel mevcut ise, tekrar dene
