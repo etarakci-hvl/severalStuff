@@ -16,10 +16,10 @@ RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar olu�
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
 #### RRT Pseudo Code 
 ```
-Qgoal         // ulaşılması beklenen hedef noktası
-Counter = 0   // iterasyonları takip eden sayaç
-lim = n       // algoritmanın çalıştırması gereken iterasyon sayısı
-G(V,E)        // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
+Qgoal                              // ulaşılması beklenen hedef noktası
+Counter = 0                        // iterasyonları takip eden sayaç
+lim = n                            // algoritmanın çalıştırması gereken iterasyon sayısı
+G(V,E)                             // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
 while counter < lim:               // sayaç, iterasyon sayısından küçük ise : > 
    Xnew = RandomPosition()         // rastgele noktalar oluşturulur
    if IsInObstacle(Xnew) == True:  // nokta, bir engel üzerindeyse 
