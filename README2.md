@@ -16,16 +16,16 @@ RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar olu�
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
 
 
-### 1.1. RRT ve RRG Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
+### 1.1. RRT, RRG ve RRT* Algoritmalarının Ortak Kısımlarına Dair Algoritmanın Formal Gösterimi:
 ```
 V ← {x_init}; E ← ∅; i ← 0;                    // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
 while i < N do                                 // Üst limite varılana kadar:
    G ← (V,E);                                  // Çizge oluşturulur.
    x_rand ← Sample(i); i ← i+1;                // Rastgele nokta belirlenir.
-   (V,E) ← Extend(G,x_rand);                   // Extend_RRT veya Extend_RRG algoritması çağrılabilir.
+   (V,E) ← Extend(G,x_rand);                   // Extend_RRT, Extend_RRG veya Extend_RRT* algoritması çağrılabilir.
 ```
 
-### 1.2. RRT Pseudo Code 
+### 1.2. RRT Algoritmasının Formal Gösterimi
 ```
 V' ← V; E' ← E;                                // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
 x_nearest ← Nearest(G, x);                     // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.     
@@ -46,7 +46,7 @@ Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algor
 
 " RRT algorithm extends the nearest vertex towards the sample. The RRG algorithm first extends the nearest vertex, and if such extension is successful, it also extends all the vertices returned by the Near procedure, producing a graph in general. In both cases, all the extensions resulting in collision-free trajectories are added to the graph as edges, and their terminal points as new vertices. "
 
-### 2.1. Extend_RRG(G,x) Pseudo Code:
+### 2.1. Extend_RRG(G,x) Algoritmasının Formal Gösterimi:
 ```
 V' ← V; E' ← E;                                          // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
 x_nearest ← Nearest(G,x);                                // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
@@ -64,8 +64,7 @@ return G' = (V', E')                                     // Güncellenmiş Çizg
 ## 3. RRT\* Algoritması: 
 RRT*, RRT algoritmasının optimize edilmiş halidir, düğüm sayısı sonsuza yaklaştığında, RRT* algoritması hedef noktası için mümkün olan en kısa yolu verecektir. Ayrıca, RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
 
-RRT*'ın temel prensibi RRT ile aynıdır, ancak algoritmaya iki temel ekleme ile önemli sonuçlar ortaya koymaktadır.
-İlk olarak RRT* her vertex için bir önceki vertex ile kat ettiği mesafeyi kaydeder. Buna cost() denir.
+Informal bir şekilde söz etmek gerekirse; RRT*'ın temel prensibi RRT ile aynıdır, ancak algoritmaya iki temel ekleme ile önemli sonuçlar ortaya koymaktadır. İlk olarak RRT* her vertex için bir önceki vertex ile kat ettiği mesafeyi kaydeder. Buna cost() denir.
 Grafikte en yakın düğüm bulunduktan sonra, yeni düğümün etrafı sabit bir yarıçapla incelenir.
 Yeni düğümden daha küçük cost() değeri olan bir düğüm tespit edilirse, bu düğüm yeni düğümün yerini alır.
 Bu özelliğin etkisi, ağaç yapısına yelpaze şeklinde dalların eklenmesi olarak görülebilir.
@@ -73,24 +72,27 @@ Böylece RRT'nin köşeli rota yapısı elimine edilir. RRT*'ın eklediği ikinc
 Bir vertex en küçük cost'lu vertex e bağlandıktan sonra, komşular tekrar incelenir. Cost değeri azalacaksa, komşu yeni eklenen vertex'e tekrar bağlanır. Bu özellik üretilen yolu daha düzgün (smooth) hale getirir.
 Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğun engel bulunan bir alanda RRT* daha faydalı olacaktır.
 
-### 3.1. RRT* Pseudo Code
+### 3.1. Extend_RRT* Algoritmasının Formal Gösterimi
 ```
-Rad=r                                                  // taranacak olan bölgeler için yarıçap belirlenir
-G(V,E)                                                 // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
-for itr in range(0...n)
-   Xnew = RandomPosition()                             // rastgele noktalar oluşturulur.
-   If Obstacle(Xnew) == True, try again                // seçilen noktada bir engel mevcut ise, tekrar dene
-   Xnearest = Nearest(G(V,E), Xnew)                    // en yakın vertex tespit edilir
-   Cost(Xnew) = Distance(Xnew,Xnearest)                // vertexler arasındaki cost hesaplanır
-   Xbest,Xneighbors = findNeighbors(G(V,E),Xnew,Rad)   // belirlenen yarıçaptaki komşular incelenir ve en iyi vertex tespit edilir
-   Link = Chain(Xnew,Xbest)                            // bir önceki vertex ile en iyi vertex bağlanır
-   for x' in Xneighbors
-       if Cost(Xnew) + Distance(Xnew,x') < Cost(x')    // yeni vertex için cost değeri hesaplanır ve kontrol edilir
-            Cost(x') = Cost(Xnew) + Distance(Xnew,x')
-            Parent(x') = Xnew
-            G+= {Xnew,x'}
-   G += Link
-Return G 
+V' ← V ; E' ← E; 
+x_nearest ← Nearest(G,x);
+x_new ← Steer(x_nearest, x);
+if ObstacleFree(x_nearest, x_new) then
+   V' ← V' ∪ {x_new};
+   x_min ← x_nearest;
+   X_near ← Near(G, x_new, |V|);
+   for all x_near ∈ X_near do
+      if ObstacleFree(x_near, x_new) then
+         c' ← Cost(x_near) + c(Line(x_near, x_new)); 
+         if c' < Cost(x_new) then
+            x_min ← x_near;
+   E' ← E' ∪ {(xmin, xnew)};
+   for all x_near ∈ X_near \ {x_min} do
+      if ObstacleFree(x_new, x_near) and Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near)) then
+         x_parent ← Parent (x_near);
+         E' ← E' \ {(x_parent, x_near)};
+         E' ← E' ∪ {(x_new, x_near)}; 
+return G' = (V', E')
 ```
 
 ## 4. Uygulamaya Dair Bazi Notlar
