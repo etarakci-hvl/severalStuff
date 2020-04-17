@@ -10,10 +10,11 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf),
 
 Yararlanılan Blog Yazısı: [Robotic Path Planning:RRT and RRT*](https://medium.com/@theclassytim/robotic-path-planning-rrt-and-rrt-212319121378)
 
-**RRT Algoritması:**  Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
+### RRT Algoritması 
+Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
 RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar oluşturulur ve mevcut en yakın vertex'e bağlanır. Fakat planlanan yol her zaman optimal olmayacaktır. Her vertex(köşe noktası) oluşturulduğunda, vertex'in bir engelin(obstacle) dışında kalıp kalmadığına dair bir kontrol yapılır. Bir engel ile karşılaşıldığında, vertex en yakın komşusuna bağlanır ve engelden uzaklaşılır.
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
-## RRT Pseudo Code 
+#### RRT Pseudo Code 
 ```
 Qgoal         // ulaşılması beklenen hedef noktası
 Counter = 0   // iterasyonları takip eden sayaç
@@ -34,20 +35,15 @@ RRT köşeli çıktılar üretir. Bu noktada elde edilecek rotaların yapısal d
 İki nokta arasındaki hipotenüsü almak yerine, bir üçgenin iki kenarı arasında gezinir.
 Bu da daha uzun bir mesafe oluşturması demektir. 
 
-**RRG Algoritması:** 
+### RRG Algoritması
+
 Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algoritmasıdır. Linear Temporal Logic kullanımı ve deterministik µ-calculus ile verilen spesifikasyonları yönetir. Kademeli olarak artacak şekilde üretilen rotalar çizge veri yapısı içerisinde tutulur. RRG tarafından dönen en iyi rotanın maliyeti neredeyse her zaman optimuma yakınsar.
 
 
-y. Informally speaking, the RRT algorithm extends
-the nearest vertex towards the sample. The RRG algorithm first
-extends the nearest vertex, and if such extension is successful,
-it also extends all the vertices returned by the Near procedure,
-producing a graph in general. In both cases, all the extensions
-resulting in collision-free trajectories are added to the graph
-as edges, and their terminal points as new vertices.
+" RRT algorithm extends the nearest vertex towards the sample. The RRG algorithm first extends the nearest vertex, and if such extension is successful, it also extends all the vertices returned by the Near procedure, producing a graph in general. In both cases, all the extensions resulting in collision-free trajectories are added to the graph as edges, and their terminal points as new vertices. "
 
 
-RRG ve RRT Algoritmalarının Ortak Kısımları:
+#### RRG ve RRT Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
 ```
 V <- {x_init}; E <- ∅; i <- 0;                           // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
 while i < N do                                           // Üst limite varılana kadar:
@@ -55,7 +51,7 @@ while i < N do                                           // Üst limite varılan
    x_rand <- Sample(i); i <- i+1;                        // Rastgele nokta belirlenir.
    (V,E)<-Extend(G,x_rand);                              // Extend_RRG veya Extend_RRT algoritması çağrılabilir.
 ```
-Extend_RRG(G,x) Algoritması:
+#### Extend_RRG(G,x) Pseudo Code:
 ```
 V' <- V; E' <- E;                                        // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
 x_nearest <- Nearest(G,x);                               // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu(Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
@@ -69,16 +65,6 @@ if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında
          E' <- E' U {(x_near, x_new),(x_new, x_near)};   // Hali hazırda vertex kümesine dahil edilmiş olan x_new noktasına diğer vertexlerden kenar çekilebildiği müddetçe, çift yönlü kenarlar bu satırlar kenar listesine eklenir. 
 return G' = (V', E')                                     // Güncellenmiş Çizge döner.
 ```
-
-## RRG algoritmasının izlediği adımlar :
-* bir düğüm oluşturulur.
-* bağlanılacak yeni vertex seçilir.
-* yeni vertex'in state space içinde olup olmadığı kontrol edilir.
-* Belirli bir yarıçap içindeki en yakın komşular k belirlenir.
-* düğüm ile yeni vertex yolu arasında engel olup olmadığı kontrol edilir.
-* eğer yol boş ise yeni bir düğüm belirlenir ve ağaca eklenir.
-* hedef noktaya ulaşıldığında final state güncellenir.
-* eğer yeni final state'in daha küçük cost'u varsa, final state olarak ayarlanır. 
 
 **RRT\* Algoritması:** 
 RRT*, RRT algoritmasının optimize edilmiş halidir, düğüm sayısı sonsuza yaklaştığında, RRT* algoritması hedef noktası için mümkün olan en kısa yolu verecektir. Ayrıca, RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
