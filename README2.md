@@ -14,25 +14,29 @@ Yararlanılan Blog Yazısı: [Robotic Path Planning:RRT and RRT*](https://medium
 Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
 RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar oluşturulur ve mevcut en yakın vertex'e bağlanır. Fakat planlanan yol her zaman optimal olmayacaktır. Her vertex(köşe noktası) oluşturulduğunda, vertex'in bir engelin(obstacle) dışında kalıp kalmadığına dair bir kontrol yapılır. Bir engel ile karşılaşıldığında, vertex en yakın komşusuna bağlanır ve engelden uzaklaşılır.
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
-### 1.1. RRT Pseudo Code 
+
+
+### 1.1. RRT ve RRG Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
 ```
-Qgoal                              // ulaşılması beklenen hedef noktası
-Counter = 0                        // iterasyonları takip eden sayaç
-lim = n                            // algoritmanın çalıştırması gereken iterasyon sayısı
-G(V,E)                             // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
-while counter < lim:               // sayaç, iterasyon sayısından küçük ise : > 
-   Xnew = RandomPosition()         // rastgele noktalar oluşturulur
-   if IsInObstacle(Xnew) == True:  // nokta, bir engel üzerindeyse 
-    continue
-   Xnearest = Nearest(G(V,E),Xnew) // en yakın vertexi bulur
-   Link = Chain(Xnew,Xnearest)     // nokta ile en yakın nokta bağlanır 
-   G.append(Link) 
-   if Xnew in Qgoal: 
-    Return G
-Return G 
+V ← {x_init}; E ← ∅; i ← 0;                    // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
+while i < N do                                 // Üst limite varılana kadar:
+   G ← (V,E);                                  // Çizge oluşturulur.
+   x_rand ← Sample(i); i ← i+1;                // Rastgele nokta belirlenir.
+   (V,E) ← Extend(G,x_rand);                   // Extend_RRT veya Extend_RRG algoritması çağrılabilir.
+```
+
+### 1.2. RRT Pseudo Code 
+```
+V' ← V; E' ← E;                                // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
+x_nearest ← Nearest(G, x);                     // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.     
+x_new ← Steer(x_nearest, x);                   // Steer fonksiyonunun çıktısı için; birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
+if ObstacleFree(x_nearest, x_new) then         // İki nokta arasında line segment çizilmesine bir engel yoksa: 
+   V' ← V' ∪ {x_new};                          // Yeni nokta vertex'lere eklenir.
+   E' ← E' ∪ {(x_nearest, x_new)};             // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair tek yönlü kenar hali hazırda bulunan edge'lere eklenir. x_nearest'tan x_new'e şeklinde düşünülmelidir. 
+return G' = (V', E')                           // Güncellenmiş Çizge döner.
 ```
 RRT köşeli çıktılar üretir. Bu noktada elde edilecek rotaların yapısal doğası, optimal bir yol bulma olasılığını engeller.
-İki nokta arasındaki hipotenüsü almak yerine, bir üçgenin iki kenarı arasında gezinir.
+Informal bir örnek şöyle diyor; İki nokta arasındaki hipotenüsü almak yerine, bir üçgenin iki kenarı arasında gezinir.
 Bu da daha uzun bir mesafe oluşturması demektir. 
 
 ## 2. RRG Algoritması
@@ -42,27 +46,18 @@ Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algor
 
 " RRT algorithm extends the nearest vertex towards the sample. The RRG algorithm first extends the nearest vertex, and if such extension is successful, it also extends all the vertices returned by the Near procedure, producing a graph in general. In both cases, all the extensions resulting in collision-free trajectories are added to the graph as edges, and their terminal points as new vertices. "
 
-
-### 2.1. RRG ve RRT Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
+### 2.1. Extend_RRG(G,x) Pseudo Code:
 ```
-V <- {x_init}; E <- ∅; i <- 0;                           // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
-while i < N do                                           // Üst limite varılana kadar:
-   G <- (V,E);                                           // Çizge oluşturulur.
-   x_rand <- Sample(i); i <- i+1;                        // Rastgele nokta belirlenir.
-   (V,E)<-Extend(G,x_rand);                              // Extend_RRG veya Extend_RRT algoritması çağrılabilir.
-```
-### 2.2. Extend_RRG(G,x) Pseudo Code:
-```
-V' <- V; E' <- E;                                        // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
-x_nearest <- Nearest(G,x);                               // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu(Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
-x_new <- Steer(x_nearest, x);                            // Steer fonksiyonunun çıktısı için, birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
+V' ← V; E' ← E;                                          // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
+x_nearest ← Nearest(G,x);                                // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
+x_new ← Steer(x_nearest, x);                             // Steer fonksiyonunun çıktısı için; birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
 if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında line segment çizilmesine bir engel yoksa: 
-   V' <- V' U {x_new};                                   // Yeni nokta vertex'lere eklenir.
-   E' <- E' U {(x_nearest, x_new), (x_new, x_nearest)};  // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair çift yönlü kenarlar hali hazırda bulunan edge'lere eklenir. 
-   X_near <- Near(G, x_new, |V|);                        // Near; çizge, nokta ve bir sayı alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.    
+   V' ← V' ∪ {x_new};                                    // Yeni nokta vertex'lere eklenir.
+   E' ← E' ∪ {(x_nearest, x_new), (x_new, x_nearest)};   // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair çift yönlü kenarlar hali hazırda bulunan edge'lere eklenir. 
+   X_near ← Near(G, x_new, |V|);                         // Near; çizge, nokta ve bir sayı alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.    
    for all x_near ∈ X_near do                            // Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
       if ObstacleFree(x_new, x_near) then                // Yeni nokta ile vertex arasında bir engel yoksa:
-         E' <- E' U {(x_near, x_new),(x_new, x_near)};   // Hali hazırda vertex kümesine dahil edilmiş olan x_new noktasına diğer vertexlerden kenar çekilebildiği müddetçe, çift yönlü kenarlar bu satırlar kenar listesine eklenir. 
+         E' ← E' ∪ {(x_near, x_new),(x_new, x_near)};    // Hali hazırda vertex kümesine dahil edilmiş olan x_new noktasına diğer vertexlerden kenar çekilebildiği müddetçe, çift yönlü kenarlar bu satırda kenar listesine eklenir. 
 return G' = (V', E')                                     // Güncellenmiş Çizge döner.
 ```
 
