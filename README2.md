@@ -103,7 +103,7 @@ Return G
 Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmlaarın çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
 
 ##### state_space
-Durum uzayı, dış dünyanın temsili olarak düşünülmelidr. Yukarıda bahsedilen formda algoritmaya sağlanır.
+Durum uzayı, dış dünyanın temsili olarak düşünülmelidir. Yukarıda bahsedilen formda algoritmaya sağlanır.
 ##### starting_state
 Başlangıç durumu, rotası hesaplanacak ajanın başlangıç noktası olarak kabul edilebilir. Bu parametre ajanın orjini ve alanı olarak düşünülmelidir.
 ##### target_space
