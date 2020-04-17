@@ -68,6 +68,7 @@ Her vertex(tepe noktası) oluşturulduğunda, vertex'in bir engelin(obstacle) d�
 Bir engel ile karşılaşıldığında, vertex en yakın komşusuna bağlanır ve engelden uzaklaşılır.
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
 ## RRT Pseudo Code 
+```
 Qgoal         // ulaşılması beklenen hedef noktası
 Counter = 0   // iterasyonları takip eden sayaç
 lim = n       // algoritmanın çalıştırması gereken iterasyon sayısı
@@ -82,6 +83,7 @@ while counter < lim:               // sayaç, iterasyon sayısından küçük is
    if Xnew in Qgoal: 
     Return G
 Return G 
+```
 Ek olarak, rastgele üretilen vertex leri bağlama yöntemleri de özelleştirilebilir. Örneğin bir yöntem, yeni vertex ile en yakın kenar arasındaki en kısa mesafeyi oluşturan vektörün hesaplanmasını içerir.
 Kavşak noktasında, kenara yeni bir düğüm eklenir ve rastgele oluşturulan vertex'e bağlanır.
 Alternatif olarak vertex, kendisine en yakın olan ayrık düğümlerin bağlantısını zincirleyerek en yakın düğüme eklenebilir. 
@@ -133,24 +135,5 @@ for itr in range(0...n)
             Parent(x') = Xnew
             G+= {Xnew,x'}
    G += Link
-Return G ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Return G 
+```
