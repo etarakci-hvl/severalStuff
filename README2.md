@@ -21,7 +21,7 @@ Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
 V ← {x_init}; E ← ∅; i ← 0;                    // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
 while i < N do                                 // Üst limite varılana kadar:
    G ← (V,E);                                  // Çizge oluşturulur.
-   x_rand ← Sample(i); i ← i+1;                // Rastgele nokta belirlenir.
+   x_rand ← Sample(i); i ← i+1;                // Obstacle Free alanda rastgele nokta belirlenir.
    (V,E) ← Extend(G,x_rand);                   // Extend_RRT, Extend_RRG veya Extend_RRT* algoritması çağrılabilir.
 ```
 
@@ -51,12 +51,12 @@ Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algor
 V' ← V; E' ← E;                                          // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
 x_nearest ← Nearest(G,x);                                // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
 x_new ← Steer(x_nearest, x);                             // Steer fonksiyonunun çıktısı için; birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
-if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında line segment çizilmesine bir engel yoksa: 
+if ObstacleFree(x_nearest, x_new) then                   // İki nokta (x noktasına en yakın vertex, x_nearest ile x_new) arasında line segment çizilmesine bir engel yoksa: 
    V' ← V' ∪ {x_new};                                    // Yeni nokta vertex'lere eklenir.
    E' ← E' ∪ {(x_nearest, x_new), (x_new, x_nearest)};   // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair çift yönlü kenarlar hali hazırda bulunan edge'lere eklenir. 
-   X_near ← Near(G, x_new, |V|);                         // Near; çizge, nokta ve bir sayı alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.    
+   X_near ← Near(G, x_new, |V|);                         // Near fonksiyonu; çizge, nokta ve bir sayı (# of vertices, r yarıçaplı bir çember içinde kalan) alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.    
    for all x_near ∈ X_near do                            // Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
-      if ObstacleFree(x_new, x_near) then                // Yeni nokta ile vertex arasında bir engel yoksa:
+      if ObstacleFree(x_new, x_near) then                // Yeni nokta ile loop'taki yakın bir vertex arasında bir engel yoksa:
          E' ← E' ∪ {(x_near, x_new),(x_new, x_near)};    // Hali hazırda vertex kümesine dahil edilmiş olan x_new noktasına diğer vertexlerden kenar çekilebildiği müddetçe, çift yönlü kenarlar bu satırda kenar listesine eklenir. 
 return G' = (V', E')                                     // Güncellenmiş Çizge döner.
 ```
@@ -74,19 +74,19 @@ Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğu
 
 ### 3.1. Extend_RRT* Algoritmasının Formal Gösterimi
 ```
-V' ← V ; E' ← E;                                            //
-x_nearest ← Nearest(G,x);                                   //
-x_new ← Steer(x_nearest, x);                                //
-if ObstacleFree(x_nearest, x_new) then                      //                          
-   V' ← V' ∪ {x_new};                                       //
-   x_min ← x_nearest;                                       //
-   X_near ← Near(G, x_new, |V|);                            //
-   for all x_near ∈ X_near do                               //
-      if ObstacleFree(x_near, x_new) then                   //
-         c' ← Cost(x_near) + c(Line(x_near, x_new));        //
+V' ← V ; E' ← E;                                            // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
+x_nearest ← Nearest(G,x);                                   // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu (Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
+x_new ← Steer(x_nearest, x);                                // Steer fonksiyonunun çıktısı için; birinci parametresinden çok uzaklaşmayacak biçimde, ikinci parametresine birincisine nazaran daha yakın bir değer türetilir.
+if ObstacleFree(x_nearest, x_new) then                      // İki nokta (x noktasına en yakın vertex, x_nearest ile x_new) arasında line segment çizilmesine bir engel yoksa:                         
+   V' ← V' ∪ {x_new};                                       // Yeni nokta vertex'lere eklenir.
+   x_min ← x_nearest;                                       // x_nearest'ta tutulan vertex x_min'e atanır. 
+   X_near ← Near(G, x_new, |V|);                            // Near fonksiyonu; çizge, nokta ve bir sayı (# of vertices, r yarıçaplı bir çember içinde kalan) alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.
+   for all x_near ∈ X_near do                               // Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
+      if ObstacleFree(x_near, x_new) then                   // Loop'taki yakın bir vertex ile yeni nokta arasında bir engel yoksa:
+         c' ← Cost(x_near) + c(Line(x_near, x_new));        // Cost fonksiyonu, 1.1. kısmında verilen x_init (başlangıç değeri) noktasından, x_near'a hesaplanan maliyettir. c fonksiyonu ise, verilen path'in maliyetidir. Burada verilen path, Line fonksiyonu tarafından hesaplanan x_near ile x_new arasındaki line segment'tir. Dolayısıyla, c', Cost(.) ile c(Line(.))'ın toplamı ile bulunur. c', başlangıçtan ilgili vertex'e ve bu vertex'ten de x'e yakın bir noktada türetilmiş olan x_new'e dair maliyetlerin toplamıdır. Maliyet hesabında Öklidyen mesafe kullanılmaktadır.   
          if c' < Cost(x_new) then                           //
             x_min ← x_near;                                 //
-   E' ← E' ∪ {(xmin, xnew)};                                //
+   E' ← E' ∪ {(x_min, x_new)};                              //
    for all x_near ∈ X_near \ {x_min} do                     //
       if ObstacleFree(x_new, x_near) and                    
       Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near))   
@@ -94,11 +94,12 @@ if ObstacleFree(x_nearest, x_new) then                      //
          x_parent ← Parent (x_near);                        //
          E' ← E' \ {(x_parent, x_near)};                    //
          E' ← E' ∪ {(x_new, x_near)};                       //
-return G' = (V', E')                                        //
+return G' = (V', E')                                        // Güncellenmiş Çizge döner.
 ```
 
 ## 4. Uygulamaya Dair Bazi Notlar
 
+Bu uygulama makalenin resmi uzantısı değildir. Makalede bahsedilen algoritmalar bir geliştirici tarafından gerçeklenmiştir.
 Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmlaarın çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
 
 ##### state_space
@@ -116,7 +117,10 @@ Iterasyon sayısı, algoritmanın üreteceği örnek noktalarıyla ilişkilidir.
 ##### d_threshold
 Bu parametre, eldeki düğümden yeni bir nokta örnekleneceğinde, örneklenecek noktanın ne kadar uzakta olacağına karar verir.
 
-### 4.1. Deneysel Çıktılar 
+### 4.1. Makalenin Deneysel Sonuçları
+Buraya makalenin simülasyon kısmı.
+Computational Complexity ver.
+### 4.2. Deneyimlediğimiz Deneysel Çıktılar 
 
 **RRT ve RRT\* algoritmalarının ikili kıyası (n_samples=5000) aşağıdadır:**
 
