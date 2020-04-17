@@ -4,8 +4,11 @@ Bu çalışmada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Gra
 
 Kodun alındığı repository: [Fast RRT*](https://github.com/dixantmittal/fast-rrt-star)
 
-Yararlanılan Makale: [Incremental Sampling-based Algorithms
-for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf)
+Yararlanılan Makaleler: [Incremental Sampling-based Algorithms
+for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf),
+[Sampling-based Algorithms for Optimal Motion Planning](https://arxiv.org/pdf/1105.1186.pdf)
+
+Yararlanılan Blog Yazısı: [Robotic Path Planning:RRT and RRT*](https://medium.com/@theclassytim/robotic-path-planning-rrt-and-rrt-212319121378)
 
 **RRT Algoritması:**  Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
 
@@ -112,6 +115,9 @@ Bu özellik yolu daha düzgün hale getirir.
 Grafikleri, RRT'lerden karakteristik olarak farklıdır.
 Özellikle yoğun engel bulunan bir alanda RRT* daha faydalı olacaktır.
 ## RRT* Pseudo Code
+
+
+
 
 ```
 Rad=r     // taranacak olan bölgeler için yarıçap belirlenir
