@@ -1,4 +1,4 @@
-## RRT, RRG ve Fast RRT* Uygulamaları
+# RRT, RRG ve Fast RRT* Uygulamaları
 
 Bu çalışmada Rapidly-Exploring Random Tree(RRT), Rapidly-Exploring Random Graph(RRG) ve Rapidly-Exploring Random Tree*(RRT*) algoritmalarına dair uygulamalar yer almaktadır. Algoritmayı gerçekleyen yazarın bahsettiği üzere bir takım tasarım kararlarından ötürü RRT* algoritması standart uygulamaya nazaran ~10 kat hızlı çalışmaktadır. Programın çalışma prensibinde rastgele yerleştirilen engellere, başlangıç ve bitiş noktalarına vurgu yapılmıştır. Unutmamak gerekir ki, çizge teorisinde, ağaç veri yapıları yönsüz çizgeler olarak nitelendirilebilir(Her iki düğümün yalnızca birer kenar ile bağlandığı, çevrimsiz (acyclic), yönsüz (undirected) çizgeler olarak açıklamak mümkündür).
 
@@ -10,11 +10,11 @@ for Optimal Motion Planning](http://roboticsproceedings.org/rss06/p34.pdf),
 
 Yararlanılan Blog Yazısı: [Robotic Path Planning:RRT and RRT*](https://medium.com/@theclassytim/robotic-path-planning-rrt-and-rrt-212319121378)
 
-### 1. RRT Algoritması 
+## 1. RRT Algoritması 
 Kademeli artan örnekleme tabanlı algoritmalar tekil-sorgu için geliştirilmişlerdir. Gerçek zamanlı uygulamalarda en etkin olan algoritmalardan biri de RRT algoritmasıdır. Olasılıksal olarak *complete* oldukları gösterilen bu algoritmanın bir diğer özelliği, hata olasılığının *exponential decay*'e sahip olmasıdır. 
 RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar oluşturulur ve mevcut en yakın vertex'e bağlanır. Fakat planlanan yol her zaman optimal olmayacaktır. Her vertex(köşe noktası) oluşturulduğunda, vertex'in bir engelin(obstacle) dışında kalıp kalmadığına dair bir kontrol yapılır. Bir engel ile karşılaşıldığında, vertex en yakın komşusuna bağlanır ve engelden uzaklaşılır.
 Hedef noktasına veya bir sınıra ulaşıldığında algoritma sona erer.
-#### 1.1. RRT Pseudo Code 
+### 1.1. RRT Pseudo Code 
 ```
 Qgoal                              // ulaşılması beklenen hedef noktası
 Counter = 0                        // iterasyonları takip eden sayaç
@@ -35,7 +35,7 @@ RRT köşeli çıktılar üretir. Bu noktada elde edilecek rotaların yapısal d
 İki nokta arasındaki hipotenüsü almak yerine, bir üçgenin iki kenarı arasında gezinir.
 Bu da daha uzun bir mesafe oluşturması demektir. 
 
-### 2. RRG Algoritması
+## 2. RRG Algoritması
 
 Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algoritmasıdır. Linear Temporal Logic kullanımı ve deterministik µ-calculus ile verilen spesifikasyonları yönetir. Kademeli olarak artacak şekilde üretilen rotalar çizge veri yapısı içerisinde tutulur. RRG tarafından dönen en iyi rotanın maliyeti neredeyse her zaman optimuma yakınsar.
 
@@ -43,7 +43,7 @@ Kademeli artan örnekleme tabanlı algoritmalara bir diğer örnek ise RRG algor
 " RRT algorithm extends the nearest vertex towards the sample. The RRG algorithm first extends the nearest vertex, and if such extension is successful, it also extends all the vertices returned by the Near procedure, producing a graph in general. In both cases, all the extensions resulting in collision-free trajectories are added to the graph as edges, and their terminal points as new vertices. "
 
 
-#### 2.1. RRG ve RRT Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
+### 2.1. RRG ve RRT Algoritmalarının Ortak Kısımlarına Dair Pseudo Code:
 ```
 V <- {x_init}; E <- ∅; i <- 0;                           // Köşe, Kenar, ve İterasyon değişkenlerine öndeğer atamaları yapılır.
 while i < N do                                           // Üst limite varılana kadar:
@@ -51,7 +51,7 @@ while i < N do                                           // Üst limite varılan
    x_rand <- Sample(i); i <- i+1;                        // Rastgele nokta belirlenir.
    (V,E)<-Extend(G,x_rand);                              // Extend_RRG veya Extend_RRT algoritması çağrılabilir.
 ```
-#### 2.2. Extend_RRG(G,x) Pseudo Code:
+### 2.2. Extend_RRG(G,x) Pseudo Code:
 ```
 V' <- V; E' <- E;                                        // Köşe ve Kenar değişkenlerine öndeğer atamaları yapılır.
 x_nearest <- Nearest(G,x);                               // Çizge ve bir x noktası alınır. Bir mesafe fonksiyonu(Örn.: Euclidean D.) uyarınca, x değerine en yakın vertex döner.
@@ -66,7 +66,7 @@ if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında
 return G' = (V', E')                                     // Güncellenmiş Çizge döner.
 ```
 
-### 3. RRT\* Algoritması: 
+## 3. RRT\* Algoritması: 
 RRT*, RRT algoritmasının optimize edilmiş halidir, düğüm sayısı sonsuza yaklaştığında, RRT* algoritması hedef noktası için mümkün olan en kısa yolu verecektir. Ayrıca, RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
 
 RRT*'ın temel prensibi RRT ile aynıdır, ancak algoritmaya iki temel ekleme ile önemli sonuçlar ortaya koymaktadır.
@@ -78,7 +78,7 @@ Böylece RRT'nin köşeli rota yapısı elimine edilir. RRT*'ın eklediği ikinc
 Bir vertex en küçük cost'lu vertex e bağlandıktan sonra, komşular tekrar incelenir. Cost değeri azalacaksa, komşu yeni eklenen vertex'e tekrar bağlanır. Bu özellik üretilen yolu daha düzgün (smooth) hale getirir.
 Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğun engel bulunan bir alanda RRT* daha faydalı olacaktır.
 
-#### 3.1. RRT* Pseudo Code
+### 3.1. RRT* Pseudo Code
 ```
 Rad=r                                                  // taranacak olan bölgeler için yarıçap belirlenir
 G(V,E)                                                 // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
@@ -98,7 +98,7 @@ for itr in range(0...n)
 Return G 
 ```
 
-### 4. Uygulamaya Dair Bazi Notlar
+## 4. Uygulamaya Dair Bazi Notlar
 
 Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmlaarın çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
 
@@ -117,7 +117,7 @@ Iterasyon sayısı, algoritmanın üreteceği örnek noktalarıyla ilişkilidir.
 ##### d_threshold
 Bu parametre, eldeki düğümden yeni bir nokta örnekleneceğinde, örneklenecek noktanın ne kadar uzakta olacağına karar verir.
 
-#### 4.1. Deneysel Çıktılar 
+### 4.1. Deneysel Çıktılar 
 
 **RRT ve RRT\* algoritmalarının ikili kıyası (n_samples=5000) aşağıdadır:**
 
@@ -132,7 +132,7 @@ Bu parametre, eldeki düğümden yeni bir nokta örnekleneceğinde, örneklenece
 
 Bu örnek sonuçlara ek olarak, diğer güzergah kıyaslamaları, maliyet ve hesaplama zamanı sonuçları *plots* ve *metrics* klasörleri altında bulunabilir.
 
-### 5. Nasıl Çalıştırılır ? 
+## 5. Nasıl Çalıştırılır ? 
 
 * Öncelikle, `conda env create --name FastRRT --file environment.yml` komutuyla gereken kütüphaneler yüklenmelidir ve `conda activate FastRRT` komutuyla çevre aktive edilmedilir.
 
