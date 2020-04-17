@@ -66,7 +66,7 @@ if ObstacleFree(x_nearest, x_new) then                   // İki nokta arasında
 return G' = (V', E')                                     // Güncellenmiş Çizge döner.
 ```
 
-**RRT\* Algoritması:** 
+### RRT\* Algoritması: 
 RRT*, RRT algoritmasının optimize edilmiş halidir, düğüm sayısı sonsuza yaklaştığında, RRT* algoritması hedef noktası için mümkün olan en kısa yolu verecektir. Ayrıca, RRT* algorıtmasını, RRG algoritmasının ağaç tabanlı versiyonu olarak düşünmek mümkündür. RRG'nin *asymptotic optimality* özelliğini, ağaç veri yapısını kullanarak gerçekleyen bu metodoloji, hali hazırda ağaçta bulunan düğümlere uzanan en düşük maliyetli güzergahları keşfeder. Bunu yaparken kendini yeniden yapılandırır, ***rewire*** eder.
 
 RRT*'ın temel prensibi RRT ile aynıdır, ancak algoritmaya iki temel ekleme ile önemli sonuçlar ortaya koymaktadır.
@@ -78,7 +78,7 @@ Böylece RRT'nin köşeli rota yapısı elimine edilir. RRT*'ın eklediği ikinc
 Bir vertex en küçük cost'lu vertex e bağlandıktan sonra, komşular tekrar incelenir. Cost değeri azalacaksa, komşu yeni eklenen vertex'e tekrar bağlanır. Bu özellik üretilen yolu daha düzgün (smooth) hale getirir.
 Görsel olarak da, RRT'lerden karakteristik olarak farklıdır. Özellikle yoğun engel bulunan bir alanda RRT* daha faydalı olacaktır.
 
-## RRT* Pseudo Code
+#### RRT* Pseudo Code
 ```
 Rad=r     // taranacak olan bölgeler için yarıçap belirlenir
 G(V,E)    // boş olarak tanımlanan, kenar(edge) ve köşe(vertice) parametrelerini içeren Çizge
