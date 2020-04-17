@@ -53,12 +53,6 @@ Bu örnek sonuçlara ek olarak, diğer güzergah kıyaslamaları, maliyet ve hes
 
 * Çevre aktive edildikten sonra, terminalde klasörün bulunduğu konuma gidilir ve `python Main.py` komutu yürütülür. Çıktı olarak RRT, RRG ve RRT* algoritmalarını test etmek için rastgele oluşturulan engelli bir harita ve bu engelli haritaya çözüm sunan algoritmalara dair çıktılar barındıran 3 adet figür gelecektir.
 
-**ET&ED**
-
-
-
-
-
 # RRT Algoritması #
 RRT algoritmasında başlangıç ve hedef nokta arasında rastgele noktalar oluşturulur ve mevcut en yakın düğüme bağlanır. Rastgele noktalar belirleme yöntemi bir tasarım kararıdır.
 RRT, hem grafik oluşturan hem de yol planlayan bir algoritmadır. Fakat planlanan yol her zaman optimal olmayacaktır.
@@ -137,3 +131,5 @@ for itr in range(0...n)
    G += Link
 Return G 
 ```
+**ET&ED**
+
