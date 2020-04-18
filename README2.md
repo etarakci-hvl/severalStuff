@@ -89,7 +89,7 @@ if ObstacleFree(x_nearest, x_new) then                      // İki nokta (x nok
    E' ← E' ∪ {(x_min, x_new)};                              // Yeni nokta ve ona yakın bir konumda bulunan vertex'e dair kenar hali hazırda bulunan edge'lere eklenir. x_min'den, x_new'e oluşturulan kenar eklenmiştir. 
    for all x_near ∈ X_near \ {x_min} do                     // Vertex kümesinde bulunan x_min hariç her bir vertex için: 
       if ObstacleFree(x_new, x_near) and                    
-      Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near))   //
+      Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near))   
       then                                                  // (REWIRING SÜRECİ) Eğer x_new ile x_near noktası arasında herhangi bir engel yoksa VE x_near'a kadar hesaplanan ardışık path'lerin toplam maliyeti, x_new'a kadar hesaplanan ardışık path'lerin maliyeti ve x_new ile x_near arasındaki line segment'in maliyetinin toplamından büyükse:  
          x_parent ← Parent (x_near);                        // Parent fonksiyonu sayesinde x_near vertex'inin parent vertex'i bulunarak x_parent'a atanır. 
          E' ← E' \ {(x_parent, x_near)};                    // Parent vertex ile x_near vertex'i arasındaki kenar, kenar kümesi, yani E' kümesinden çıkarılarak güncellenir.   
