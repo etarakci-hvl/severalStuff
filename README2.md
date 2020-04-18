@@ -99,8 +99,8 @@ return G' = (V', E')                                        // Güncellenmiş Ç
 
 ## 4. Uygulamaya Dair Bazi Notlar
 
-Bu uygulama makalenin resmi uzantısı değildir. Makalede bahsedilen algoritmalar bir geliştirici tarafından gerçeklenmiştir.
-Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmlaarın çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
+Bu uygulama makalenin resmi uzantısı değildir. Makalede bahsedilen algoritmalar geliştirici(ler) tarafından gerçeklenmiştir.
+Uzay temsili, orjin ve boyut olarak tutulmaktadır((15, 20), (3,3)). Algoritmaların çalışması için, çevrede yer alan engellere dair kullanılan bu temsile ek olarak; başlangıç durumu, hedef bölge ve engeller haritası (tüm objelere dair Uzay Temsili) gerekmektedir. Aşağıda ilgili parametrelerin açıklamaları görülebilir.
 
 ##### state_space
 Durum uzayı, dış dünyanın temsili olarak düşünülmelidir. Yukarıda bahsedilen formda algoritmaya sağlanır.
@@ -117,10 +117,7 @@ Iterasyon sayısı, algoritmanın üreteceği örnek noktalarıyla ilişkilidir.
 ##### d_threshold
 Bu parametre, eldeki düğümden yeni bir nokta örnekleneceğinde, örneklenecek noktanın ne kadar uzakta olacağına karar verir.
 
-### 4.1. Makalenin Deneysel Sonuçları
-Buraya makalenin simülasyon kısmı.
-Computational Complexity ver.
-### 4.2. Deneyimlediğimiz Deneysel Çıktılar 
+### 4.1. Deneyimlediğimiz Deneysel Çıktılar 
 
 **RRT ve RRT\* algoritmalarının ikili kıyası (n_samples=5000) aşağıdadır:**
 
