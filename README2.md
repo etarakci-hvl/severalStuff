@@ -81,7 +81,7 @@ if ObstacleFree(x_nearest, x_new) then                      // İki nokta (x nok
    V' ← V' ∪ {x_new};                                       // Yeni nokta vertex'lere eklenir.
    x_min ← x_nearest;                                       // x_nearest'ta tutulan vertex, x_min'e atanır. 
    X_near ← Near(G, x_new, |V|);                            // Near fonksiyonu; çizge, nokta ve bir sayı (# of vertices, r yarıçaplı bir çember içinde kalan) alır ve verilen noktaya en yakın vertex'ler çıktı olarak verilir. Nearest fonksiyonunun genellemesidir. Bir değer dönmesi yerine değerler kümesi döner.
-   for all x_near ∈ X_near do                               // (ÇİZGE YENİ ÖRNEKLERE GENİŞLER) Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
+   for all x_near ∈ X_near do                               // (ÇİZGENİN YENİ ÖRNEKLERE GENİŞLEME SÜRECİ) Near fonksiyonunun döndüğü değerler kümesinde yer alan her bir değer için:
       if ObstacleFree(x_near, x_new) then                   // Loop'taki yakın bir vertex ile yeni nokta arasında bir engel yoksa:
          c' ← Cost(x_near) + c(Line(x_near, x_new));        // Cost fonksiyonu, 1.1. kısmında verilen x_init (başlangıç değeri) noktasından, x_near'a hesaplanan ardışık path'lerin toplam maliyetidir. c fonksiyonu ise, içerisinde verilen line segment'in (x_near'dan x_new'a) maliyetidir. Dolayısıyla, c', Cost(.) ile c(Line(.))'ın toplamı ile bulunur. c', başlangıçtan ilgili vertex'e ve bu vertex'ten de x'e yakın bir noktada türetilmiş olan x_new'e dair maliyetlerin toplamıdır. Maliyet hesaplarında Öklidyen mesafe kullanılmaktadır.   
          if c' < Cost(x_new) then                           // Eğer c' için hesaplanan maliyet, x_init'ten, x_new'a oluşan maliyetten küçükse():
@@ -90,7 +90,7 @@ if ObstacleFree(x_nearest, x_new) then                      // İki nokta (x nok
    for all x_near ∈ X_near \ {x_min} do                     // Vertex kümesinde bulunan x_min hariç her bir vertex için: 
       if ObstacleFree(x_new, x_near) and                    
       Cost(x_near) > Cost(x_new) + c(Line(x_new, x_near))   //
-      then                                                  // (REWIRING) Eğer x_new ile x_near noktası arasında herhangi bir engel yoksa VE x_near'a kadar hesaplanan ardışık path'lerin toplam maliyeti, x_new'a kadar hesaplanan ardışık path'lerin maliyeti ve x_new ile x_near arasındaki line segment'in maliyetinin toplamından büyükse:  
+      then                                                  // (REWIRING SÜRECİ) Eğer x_new ile x_near noktası arasında herhangi bir engel yoksa VE x_near'a kadar hesaplanan ardışık path'lerin toplam maliyeti, x_new'a kadar hesaplanan ardışık path'lerin maliyeti ve x_new ile x_near arasındaki line segment'in maliyetinin toplamından büyükse:  
          x_parent ← Parent (x_near);                        // Parent fonksiyonu sayesinde x_near vertex'inin parent vertex'i bulunarak x_parent'a atanır. 
          E' ← E' \ {(x_parent, x_near)};                    // Parent vertex ile x_near vertex'i arasındaki kenar, kenar kümesi, yani E' kümesinden çıkarılarak güncellenir.   
          E' ← E' ∪ {(x_new, x_near)};                       // x_new ile bağlantısız kalan x_near arasında kenar oluşturularak kenar kümesine (E') eklenir ve kenar kümesi güncellenir.  
