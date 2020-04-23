@@ -22,18 +22,8 @@ Son olarak, gürültünün dağılımını anlamak adına her bir Ground Truth n
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik3.png" width="600">
 
 
+Araç üzerindeki tüm sensör modelleri (şu an için RADAR, LIDAR ve Kamera) çalıştırılarak ürettikleri veriler cache mekanizması ile saklanacaktır. Sentetik veri oluşturmak için geliştirilen DataGenerator modülü araç çevresinde, tespit mesafesinde olan tüm objeleri görecek haldedir. Bu modül araç üzerine bulunan tüm sensörlerin cache'lenen sonuçlarını da alacak ve her sensör için bir filtreleme yaparak (ilgili obje ilgili sensörde tespit edilip edilmediğine dair) bir liste elde edecektir. Bu filtreleme ile oluşturulan listeleme yöntemi her sensör için ayrı ayrı yapılacak ve bu listelerin birleşimi de bize en az bir sensör tarafından yakalanabilen objelerin listesini dönecektir. Objelere dair ihtiyacımız olan çıktı csv/json formatında tutulacaktır. Alınan noktalara tariflenen gürültü modeli eklenecektir. 
 
+Araç çevresinde olup, verilen an için 3 sensörden (RADAR, LIDAR ve Kamera), en az bir tanesi tarafından tespit edilen tüm objeler sentetik veri setinde yer alacaktır.
 
-
-
-
-
-Çıktılar:
-Min aşağıdaki konuları açıklayan doküman:
-1. Filtrenin zamana bağlı olarak oturması nasıl simüle edilecek (cold-start)
-2. Kullanılan Gauss modeli
-3. Filtre çıktıları nasıl simüle edilecek (Gauss modeli)
-4. Sensör ve algoritma modelleri nasıl simüle edilecek (Kamera, RADAR, LIDAR)
-5. Hangi objeler sentetik dünya modeli çıktısı içinde yer alacak? 
-6. Sentetik veri data alma sıklığı nasıl ele alınacak? (simulation time, wall clock)
-7. Sampling toolu hangi durumda kullanılacak?
+Sentetik veri alma sıklığına gelirsek, bu aşamada verileri alabildiğimiz sıklıkta alıp elde edilen çıktıları sublayer'lara bölerek ihtiyaç olan sıklık elde edilecektir.
