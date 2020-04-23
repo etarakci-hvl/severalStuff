@@ -7,8 +7,10 @@ Ayrıca, sensör okumalarında meydana gelen ilk defa karşılaşılan bir cisim
 
 Aşağıda simülasyon ortamından edinilmiş Ground Truth görülmektedir (Zamansallık sağ üstten sol alta doğru ilerlemektedir).
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik1.png" width="600">
+
 Burada ise gürültü eklenmiş çıktıyı görmekteyiz.
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik2.png" width="600">
+
 Son olarak, gürültünün dağılımını anlamak adına her bir Ground Truth noktası için üretilen 100 adet gürültülü noktanın oluşturduğu çıktıyı görmekteyiz.
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik3.png" width="600">
 
