@@ -1,12 +1,23 @@
-## Simulator Uzerinden Sentetik Veri Eldesi
+## Simülatör Üzerinden Sentetik Veri Eldesi
 
-Simulatorden edinilen direkt konum bilgisi (x,y,z) uzerine sensor okumalarini temsilen eklenen gurultu modeli asagida tariflenmistir.
-Her bir nokta icin, her eksen icin ayri ayri Gaussian bir gurultu eklenmistir. 
-Isotropic olarak ele almak yerine, eksende beklenen olasi sapmalari o eksen ozelinde ele almak icin bu tarz bir modellemeye gidilmistir.
-Ayrica, sensor okumalarinda meydana gelen ilk defa karsilasilan bir cisim icin modele oturma sureci 
-\begin{equation}e^(-x)\end{equation}
-'le orantili ussel azalan bir fonksiyonla 
-temsil edilmistir.
+Simülatörden edinilen direkt konum bilgisi (x,y,z) üzerine sensör okumalarını temsilen eklenen gürültü modeli aşağıda tariflenmiştir.
+Her bir nokta için, her eksene ayrı ayrı Gaussian bir gürültü eklenmiştir.
+Isotropic olarak ele almak yerine, eksende beklenen olası sapmaları o eksen özelinde ele almak için bu tarz bir modellemeye gidilmiştir. Sensörlerin eksenlere göre sapma payları belirlendiği takdirde, bu yaklaşım sensör çıktılarına yakın sonuçlar üretebilecektir.
+Ayrıca, sensör okumalarında meydana gelen ilk defa karşılaşılan bir cisim veya uzaklaşan bir cisim için, modele oturma süreci e^(-x)'le orantılı üstel azalan bir fonksiyonla temsil edilmiştir.
+
+Aşağıda simülasyon ortamından edinilmiş Ground Truth görülmektedir (Zamansallık sağ üstten sol alta doğru ilerlemektedir).
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik1.png" width="600">
+Burada ise gürültü eklenmiş çıktıyı görmekteyiz.
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik2.png" width="600">
+Son olarak, gürültünün dağılımını anlamak adına her bir Ground Truth noktası için üretilen 100 adet gürültülü noktanın oluşturduğu çıktıyı görmekteyiz.
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik3.png" width="600">
+
+
+
+
+
+
+
 
 Çıktılar:
 Min aşağıdaki konuları açıklayan doküman:
