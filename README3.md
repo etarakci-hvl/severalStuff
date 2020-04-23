@@ -26,4 +26,5 @@ Araç üzerindeki tüm sensör modelleri (şu an için RADAR, LIDAR ve Kamera) �
 
 Araç çevresinde olup, verilen an için 3 sensörden (RADAR, LIDAR ve Kamera), en az bir tanesi tarafından tespit edilen tüm objeler sentetik veri setinde yer alacaktır.
 
-Sentetik veri alma sıklığına gelirsek, bu aşamada verileri alabildiğimiz sıklıkta alıp elde edilen çıktıları sublayer'lara bölerek ihtiyaç olan sıklık elde edilecektir.
+Sentetik veri alma sıklığına gelirsek, bu aşamada verileri alabildiğimiz sıklıkta alıp elde edilen çıktıları bir resampling stratejisiyle ayrık zaman adımlarına atayarak, ihtiyaç olan sıklığın elde edilmesi amaçlanmaktadır.
+Bahsedilen resampling stratejisi, ihtiyaç olan sıklıktan fazla veri topladığımız durumlar için, ilgili zaman adımına temporal olarak yakın bulunan örneklerin averajı alınarak veya LTTB algoritması kullanılarak istenen sıklığa ulaşılmasını(downsampling); ihtiyaç olan sıklıktan az veri topladımız durumlar içinse, missing value imputation metodolojilerinden yararlanılarak(upsampling) istenen sıklığa ulaşılmasını sağlayacaktır.
