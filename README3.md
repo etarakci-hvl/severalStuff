@@ -3,7 +3,9 @@
 Simulatorden edinilen direkt konum bilgisi (x,y,z) uzerine sensor okumalarini temsilen eklenen gurultu modeli asagida tariflenmistir.
 Her bir nokta icin, her eksen icin ayri ayri Gaussian bir gurultu eklenmistir. 
 Isotropic olarak ele almak yerine, eksende beklenen olasi sapmalari o eksen ozelinde ele almak icin bu tarz bir modellemeye gidilmistir.
-Ayrica, sensor okumalarinda meydana gelen ilk defa karsilasilan bir cisim icin modele oturma sureci \e^(-x)\'la orantili ussel azalan bir fonksiyonla 
+Ayrica, sensor okumalarinda meydana gelen ilk defa karsilasilan bir cisim icin modele oturma sureci 
+\begin{equation}e^(-x)\end{equation}
+'le orantili ussel azalan bir fonksiyonla 
 temsil edilmistir.
 
 Çıktılar:
