@@ -1,11 +1,12 @@
 ## Simülatör Üzerinden Sentetik Veri Eldesi
 
 Simülatörden edinilen direkt konum bilgisi (x,y,z) üzerine sensör okumalarını temsilen eklenen gürültü modeli aşağıda tariflenmiştir.
-Her bir nokta için, her eksene ayrı ayrı Gaussian bir gürültü eklenmiştir.
-Isotropic olarak ele almak yerine, eksende beklenen olası sapmaları o eksen özelinde ele almak için bu tarz bir modellemeye gidilmiştir. Sensörlerin eksenlere göre sapma payları belirlendiği takdirde, bu yaklaşım sensör çıktılarına yakın sonuçlar üretebilecektir.
-Ayrıca, sensör okumalarında meydana gelen ilk defa karşılaşılan bir cisim veya uzaklaşan bir cisim için, modele oturma süreci e^(-x)'le orantılı üstel azalan bir fonksiyonla temsil edilmiştir.
 
-Aşağıda simülasyon ortamından edinilmiş Ground Truth görülmektedir (Zamansallık sağ üstten sol alta doğru ilerlemektedir).
+Her bir nokta için, her eksene ayrı ayrı Gaussian bir gürültü eklenmiştir. Gürültünün oluşturulması sırasında [numpy.random.normal](https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html?) fonksiyonundan yararlanılmıştır. 
+Isotropic olarak ele almak yerine, bir eksende beklenen olası sapmaları o eksen özelinde ele almak için bu tarz bir modellemeye gidilmiştir. Sensörlerin eksenlere göre sapma payları belirlendiği takdirde, bu yaklaşım sensör çıktılarına yakın sonuçlar üretebilecektir.
+Ayrıca, sensör okumalarında meydana gelen ilk defa karşılaşılan bir cisim veya uzaklaşan bir cisim için, modele oturma süreci e^(-x)'le orantılı üstel azalan bir fonksiyonla temsil edilmiştir. 
+
+Aşağıda simülasyon ortamından edinilmiş Ground Truth noktaları (kartezyen koordinat sistemi) görülmektedir (Zamansallık sağ üstten sol alta doğru ilerlemektedir).
 
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/sentetik1.png" width="600">
