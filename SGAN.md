@@ -5,12 +5,14 @@ Kodun alındığı kaynak: https://github.com/agrimgupta92/sgan olarak belirtile
 
 Normal sartlar altinda, insan hareketi bireyler arasinda gerceklesen, bircok farkli davranisa evrilebilme potansiyeli olan ve sosyal adetlere uygun icra edilen bir surectir. Social GAN makalesinde, bahsi gecen bu karmasik konuya dair bir yaklasim sunulmustur. Bu yaklasimda, Sequence Prediction ve Generative Adversarial Networks konseptlerini birlikte kullanarak, bir recurrent sequence-to-sequence model elde edilmistir. Bu model hareket gecmislerini gozlemleyerek ve yayalara dair bilgileri toplama adina kullandigi pooling mekanizmasi sayesinde gelecege dair davranislari kestirmeyi amaclar. 
 Asagida, kompleks senaryolarda, model tarafindan uretilmis ve sosyal olarak kabul edilebilir olarak nitelendirilen tahminleri gormekteyiz. Her bir insan farkli bir renkle belirtilir. Gozlem verisi noktalarla, tahmin verisi yildizlarla gosterilmektedir.
-![](images/2.png)
-![](images/3.png)
+![gif1](images/2.png)
+![gif2](images/3.png)
 
 ### 1. Model
 Sunulan mimari 3 kisimdan meydana gelmektedir. Generator (G), Pooling Module (PM) ve Discriminator (D). Generator yapisi, Encoder ve Decoder'a dair Hidden State'lerin Pooling Module araciligiyla baglandigi Encoder-Decoder cercevesi uzerine oturur. Generator yapisi, bir mahalde bulunan yayalara dair trajectory'leri girdi olarak alir ve ilgili tahmin trajectory'lerini olusturur. Discriminator yapisi ise, tum sekansi, yani hem input trajectory'lerini hem de bu trajectory'lere dair tahminleri bir arada edinir ve gercek/sahte seklinde siniflandirir.
+#### Mimari
 ![Mimari](images/model.png)
+#### Pooling Module
 ![Pooling Module](images/PM.png)
 Makalede onerilen Pooling mekanizmasi (kirmizi noktali oklari) ile Social Pooling (kirmizi cizgili grid) yaklasiminin kirmizi insan icin kiyaslanmasini gormekteyiz. Onerilen metod kirmizi insan ile diger insanlar arasindaki relatif pozisyonlari hesaplar. Bu pozisyonlar her bir insanin hidden state'ine pespese eklenir. Sonrasinda bir MLP tarafindan bagimsiz bir sekilde islenir ve sonrasinda elementwise pool'lanarak kirmizi insanin pooling vector'u (P1) hesaplanir. Social Pooling sadece grid icersindeki insanlari hesaba katar ve her bir ikili arasindaki etkilesimi modelleyemez.
 
