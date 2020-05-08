@@ -7,6 +7,7 @@ State of the Art'a eristikleri bir takim veri setleri ve challenge'lar:
 - Trajectory Prediction on Apolloscape 
 - Trajectory Prediction on Argoverse
 - Trajectory Prediction on Lyft Level 5
+
 Sonuclar metre yerine normalized RMSE degerleri cinsinden verilmistir.
 
 
