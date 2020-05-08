@@ -88,8 +88,10 @@ Raw data'dan veri elde etme surecine dair adimlar burada ozetlenmistir.
 Network Mimarisi gorselinde, i'inci road-agent icin Trajectory ve Behavior Prediction gosterilmedektedir (Traffic Graphs kismindaki kirmizi daire). Input'ta, T saniyelik gecmise dair uzaysal koordinatlarin yani sira traffic-graph'larin  ilk T traffic-graph'a tekabul eden eigenvector'leri de barinmaktadir (yesil dikdortgenler, her bir yesil tonu eigenvector'un index'ini temsil etmektedir). Hakiki loss fonksiyonunu regularize etmek ve uzun vadeli tahmin kalitesini artirma maksadiyla yeni loss fonksiyonu uzerinde backpropagation islemi gerceklestirmek icin, Stream 2 blogundan edinilen tahmin edilmis eigenvector'lerin uzerinde Spectral clustering teknigi icra edilir.  
 
 ## Diger Modellerle Kiyaslamalar
-![comparison of our methods with other methods](figures/compare.png)
 Trajectory Prediction metodlarina dair Average Displacement Error (ADE) ve Final Displacement Error (FDE) hata sonuclari raporlanmistir. Dusuk skorlar daha iyiyi niteler ve kalin yazilmis sonuclar SOTA sonuclardir. Makalenin yazarlari, en dusuk ADE/FDE sonuclarina erismenin yani sira, uzun vadeli tahmin sonuclarindaki hata paylarini da 5 kat dusurduklerini iddia etmektedirler. Asteriks (∗) sembolu tahmin suresince yakinsayamayan metodlari vurgular. Bu kisimdaki sonuclar metre cinsindendir.
+
+![comparison of our methods with other methods](figures/compare.png)
+
 ## Bir Takim Sonuclar
 
 ### Trajectory Prediction Sonucu
