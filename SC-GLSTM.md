@@ -89,7 +89,7 @@ Network Mimarisi gorselinde, i'inci road-agent icin Trajectory ve Behavior Predi
 
 ## Diger Modellerle Kiyaslamalar
 ![comparison of our methods with other methods](figures/compare.png)
-Trajectory Prediction metodlarina dair Average Displacement Error (ADE) ve Final Displacement Error (FDE) hata sonuclari raporlanmistir. Dusuk skorlar daha iyiyi niteler ve kalin yazilmis sonuclar SOTA sonuclardir. Makalenin yazarlari, en dusuk ADE/FDE sonuclarina erismenin yani sira, uzun vadeli tahmin sonuclarindaki hata paylarini da 5 kat dusurduklerini iddia etmektedirler. Asteriks (∗) sembolu tahmin suresince yakinsayamayan metodlari vurgular.
+Trajectory Prediction metodlarina dair Average Displacement Error (ADE) ve Final Displacement Error (FDE) hata sonuclari raporlanmistir. Dusuk skorlar daha iyiyi niteler ve kalin yazilmis sonuclar SOTA sonuclardir. Makalenin yazarlari, en dusuk ADE/FDE sonuclarina erismenin yani sira, uzun vadeli tahmin sonuclarindaki hata paylarini da 5 kat dusurduklerini iddia etmektedirler. Asteriks (∗) sembolu tahmin suresince yakinsayamayan metodlari vurgular. Bu kisimdaki sonuclar metre cinsindendir.
 ## Bir Takim Sonuclar
 
 ### Trajectory Prediction Sonucu
