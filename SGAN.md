@@ -1,25 +1,26 @@
 # Social GAN
 
-Social GAN algoritmasinin ([Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks](https://arxiv.org/abs/1803.10892), CVPR 2018) gerçeklenmesine dair çalışmalar bu repo'da toplanmistir.
+Social GAN algoritmasının ([Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks](https://arxiv.org/abs/1803.10892), CVPR 2018) gerçeklenmesine dair çalışmalar bu repo'da toplanmıştır.
 Kodun alındığı kaynak: https://github.com/agrimgupta92/sgan olarak belirtilebilir.
 
-Normal sartlar altinda, insan hareketi bireyler arasinda gerceklesen, bircok farkli davranisa evrilebilme potansiyeli olan ve sosyal adetlere uygun icra edilen bir surectir. Social GAN makalesinde, bahsi gecen bu karmasik konuya dair bir yaklasim sunulmustur. Bu yaklasimda, Sequence Prediction ve Generative Adversarial Networks konseptlerini birlikte kullanarak, bir recurrent sequence-to-sequence model elde edilmistir. Bu model hareket gecmislerini gozlemleyerek ve yayalara dair bilgileri toplama adina kullandigi pooling mekanizmasi sayesinde gelecege dair davranislari kestirmeyi amaclar. 
-Asagida, kompleks senaryolarda, model tarafindan uretilmis ve sosyal olarak kabul edilebilir olarak nitelendirilen tahminleri gormekteyiz. Her bir insan farkli bir renkle belirtilir. Gozlem verisi noktalarla, tahmin verisi yildizlarla gosterilmektedir.
+Normal şartlar altında, sosyal insan hareketi bireyler arasında gerçeklesen, birçok farklı davranışa evrilebilme potansiyeli olan ve sosyal adetlere uygun icra edilen bir süreçtir. Social GAN makalesinde, bahsi gecen bu karmaşık konuya dair bir yaklaşım sunulmuştur. Bu yaklaşımda, Sequence Prediction ve Generative Adversarial Networks konseptlerini birlikte kullanarak, bir recurrent sequence-to-sequence model elde edilmiştir. Bu model hareket geçmişlerini gözlemleyerek ve yayalara dair bilgileri toplama adına kullandığı pooling mekanizması sayesinde geleceğe dair davranışları kestirmeyi amaçlar. 
+Asağıda, kompleks senaryolarda, model tarafından üretilmiş ve sosyal olarak kabul edilebilir olarak nitelendirilen tahminleri görmekteyiz. Her bir insan farklı bir renkle belirtilir. Gözlem verisi noktalarla, tahmin verisi yıldızlarla gösterilmektedir.
 <div align='center'>
 <img src="images/2.gif"></img>
 <img src="images/3.gif"></img>
 </div>
 
 ### 1. Model
-Sunulan mimari 3 kisimdan meydana gelmektedir. Generator (G), Pooling Module (PM) ve Discriminator (D). Generator yapisi, Encoder ve Decoder'a dair Hidden State'lerin Pooling Module araciligiyla baglandigi Encoder-Decoder cercevesi uzerine oturur. Generator yapisi, bir mahalde bulunan yayalara dair trajectory'leri girdi olarak alir ve ilgili tahmin trajectory'lerini olusturur. Discriminator yapisi ise, tum sekansi, yani hem input trajectory'lerini hem de bu trajectory'lere dair tahminleri bir arada edinir ve gercek/sahte seklinde siniflandirir.
+Sunulan mimarı 3 kısımdan meydana gelmektedir. Generator (G), Pooling Module (PM) ve Discriminator (D). Generator yapısı, Encoder ve Decoder'a dair Hidden State'lerin Pooling Module aracılığıyla bağlandığı Encoder-Decoder çerçevesi üzerine oturur. Generator yapısı, bir mahalde bulunan yayalara dair trajectory'leri girdi olarak alır ve ilgili tahmin trajectory'lerini oluşturur. Discriminatör yapısı ise, tüm sekansı, yani hem input trajectory'lerini hem de bu trajectory'lere dair tahminleri bir arada edinir ve gerçek/sahte şeklinde sınıflandırır.
 #### Mimari
 ![Mimari](images/model.png)
 #### Pooling Module
 ![Pooling Module](images/PM.png)
-Makalede onerilen Pooling mekanizmasi (kirmizi noktali oklari) ile Social Pooling (kirmizi cizgili grid) yaklasiminin kirmizi insan icin kiyaslanmasini gormekteyiz. Onerilen metod kirmizi insan ile diger insanlar arasindaki relatif pozisyonlari hesaplar. Bu pozisyonlar her bir insanin hidden state'ine pespese eklenir. Sonrasinda bir MLP tarafindan bagimsiz bir sekilde islenir ve sonrasinda elementwise pool'lanarak kirmizi insanin pooling vector'u (P1) hesaplanir. Social Pooling sadece grid icersindeki insanlari hesaba katar ve her bir ikili arasindaki etkilesimi modelleyemez.
+Makalede önerilen Pooling mekanizması (kırmızı noktalı okları) ile Social Pooling (kırmızı çizgili grid) yaklaşımının kırmızı insan için kıyaslanmasını görmekteyiz. Önerilen metod kırmızı insan ile diğer insanlar arasındaki relatif pozisyonları hesaplar. Bu pozisyonlar her bir insanın hidden state'ine peşpeşe (concatenate) eklenir. Sonrasında bir MLP tarafından bağımsız bir şekilde işlenir ve sonrasında elementwise pool'lanarak kırmızı insanın pooling vector'u (P1) hesaplanır. Social Pooling ise sadece grid içersindeki insanları hesaba katar ve her bir ikili arasındaki etkileşimi modelleyemez.
+
 
 ### 2. Setup
-Bu calisma Ubuntu 16.04 uzerinde, Python 3.5 ve PyTorch 0.4 ile gerceklenmistir. Kodun alindigi repo'da onerilen kurulum adimlari su sekildedir.
+Bu çalışma Ubuntu 16.04 üzerinde, Python 3.5 ve PyTorch 0.4 ile gerçeklenmiştir. Kodun alındığı repo'da önerilen kurulum adımları su şekildedir.
 ```bash
 python3 -m venv env               # Create a virtual environment
 source env/bin/activate           # Activate virtual environment
@@ -30,13 +31,13 @@ deactivate  # Exit virtual environment
 ```
 
 ### 3. Pretrained Modeller
-`bash download_models.sh` script'i ile pretrained modeller indirilebilir. Bu script asagidaki modelleri indirecektir.
-- `sgan-models/<dataset_name>_<pred_len>.pt`: 5 veri seti icin toplam 10 adet pretrained model barindirmaktadir. Bu modeller asagidaki tablolarin SGAN-20V-20 kismina tekabul eder.
-- `sgan-p-models/<dataset_name>_<pred_len>.pt`: 5 veri seti icin toplam 10 adet pretrained model barindirmaktadir. Bu modeller asagidaki tablolarin SGAN-20VP-20 kismina tekabul eder.
-#### Karsilastirma
+`bash download_models.sh` script'i ile pretrained modeller indirilebilir. Bu script asağıdaki modelleri indirecektir.
+- `sgan-models/<dataset_name>_<pred_len>.pt`: 5 veri seti için toplam 10 adet pretrained model barındırmaktadır. Bu modeller aşağıdaki tabloların SGAN-20V-20 kısmına tekabül eder.
+- `sgan-p-models/<dataset_name>_<pred_len>.pt`: 5 veri seti için toplam 10 adet pretrained model barındırmaktadır. Bu modeller asağıdaki tabloların SGAN-20VP-20 kısmına tekabül eder.
+#### Karşılaştırma
 ![Karsilastirma](images/comparison.png)
 
-Kendi yontemlerini SGAN-kVP-N diye anmaktalar. kV ile vurgulanan modelin variety loss kullanilarak egitilip egitilmedigidir (k=1 variety loss yoktur demektir). P ise one surulen Pooling modulunun kullanilip kullanilmadigini vurgular. Test surecinde, nicel degerlendirme kapsaminda, coklu sample'lama yapilarak ve L2 normundaki en dogru tahmini kaale alarak ilerlenmistir. Son olarak N, test surecinde modelden kac defa sample alindigini belirtmektedir. t\_pred = 8 ve 12 icin, iki adet metre cinsinden error metrigi raporlanmistir: Average Displacement Error (ADE) and Final Displacement Error (FDE). Repo'daki kod, makaledeki sonuclardan daha olumlu sonuclar vermistir. print\_args kullanarak egitme surecinde kullanilan hyperparameter'lar elde edilebilir. Makalede onerildigi uzere, SGAN-20VP-20 icin, local yerine global kullanilmistir.
+Kendi yöntemlerini SGAN-kVP-N diye anmaktalar. kV ile vurgulanan modelin variety loss kullanılarak eğitilip eğitilmediğidir (k=1 variety loss yoktur demektir). P ise öne sürülen Pooling modülünün kullanılıp kullanılmadığını vurgular. Test sürecinde, nicel değerlendirme kapsamında, çoklu sample'lama yapılarak ve L2 normundaki en doğru tahmini kaale alarak ilerlenmiştir. Son olarak N, test sürecinde modelden kaç defa sample alındığını belirtmektedir. t\_pred = 8 ve 12 için, iki adet metre cinsinden error metriği raporlanmıştır: Average Displacement Error (ADE) and Final Displacement Error (FDE). Repo'daki kod, makaledeki sonuçlardan daha olumlu sonuçlar vermiştir. print\_args kullanarak eğitme sürecinde kullanılan hyperparameter'lar elde edilebilir. Makalede önerildiği üzere, SGAN-20VP-20 için, local yerine global kullanılmıştır.
 
 **SGAN-20V-20**
 
@@ -59,86 +60,85 @@ Kendi yontemlerini SGAN-kVP-N diye anmaktalar. kV ile vurgulanan modelin variety
 | `Zara2`| 0.24 |0.36|0.48 |0.73|
 
 
-### 4. Modelleri Calistirmak Icin
-`evaluate_model.py` script'i ile herhangi bir veri seti uzerinde pretrained modelleri calistirmak mumkundur. Tum veri setleri icin, karsilastirma tablosundaki SGAN-20V-20 konfigurasyonundaki sonuclari elde etme adina asagidaki script calistirilir. 
-
+### 4. Modelleri Çalıştırmak İçin
+`evaluate_model.py` script'i ile herhangi bir veri seti üzerinde pretrained modelleri çalıştırmak mümkündür. Tüm veri setleri için, karşılaştırma tablosundaki SGAN-20V-20 konfigürasyonundaki sonuçları elde etme adına aşağıdaki script çalıştırılır.
 ```bash
 python evaluate_model.py --model_path models/sgan-models
 ```
-### 5. Yeni Modellerin Egitilmesi
-Asagidaki adimlar takip edilerek egitme sureci gerceklestirilebilir. 
+### 5. Yeni Modellerin Eğitilmesi
+Asağıdaki adımlar takip edilerek eğitme süreci gerçekleştirilebilir. 
 #### 5.1. Veri Setlerinin Edinilmesi 
-***bash scripts/download_data.sh*** calistirilarak veri setleri indirilir.
-Script calistirildiginda `datasets/<dataset_name>` klasoru altinda veri setleri `train/`, `val/`, `test/` ayrimi yapilmis halde bulunacaktir. Kullanilacak veri setleri, Dunya koordinatlarina -metrik sisteme- uygun olacak sekilde pre-process islemi gecirmistir. Calisilan algoritma kapsaminda 5 adet veri seti desteklenmektedir: ETH, ZARA1, ZARA2, HOTEL ve UNIV. 
-Egitme surecinde kullanilan leave-one-out yaklasimi uyarinca, her bir veri seti, 4 set training ve 1 set test icin kullanilmaktadir. Trajectory 8 zaman adimi boyunca gozlenir ve 8 ila 12 zaman adimi icin tahmin uretilir. 1 zaman adiminin 0.4 sn oldugu kabul edilmis; 3.2 sn gozlemlenmis ve 3.2 sn - 4.8 sn'lik tahminler olusturulmustur. 
+***bash scripts/download_data.sh*** çalıştırılarak veri setleri indirilir.
+Script çalıştırıldığında `datasets/<dataset_name>` klasörü altında veri setleri `train/`, `val/`, `test/` ayrımı yapılmış halde bulunacaktır. Kullanılacak veri setleri, Dünya koordinatlarına -metrik sisteme- uygun olacak şekilde pre-process işlemi geçirmiştir. Çalışılan algoritma kapsamında 5 adet veri seti desteklenmektedir: ETH, ZARA1, ZARA2, HOTEL ve UNIV. 
+Eğitme sürecinde kullanılan leave-one-out yaklaşımı uyarınca, her bir veri seti, 4 set training ve 1 set test icin kullanılmaktadır. Trajectory 8 zaman adımı boyunca gözlenir ve 8 veya 12 zaman adımı için tahmin üretilir. 1 zaman adımının 0.4 sn olduğu kabul edilmiş; 3.2 sn gözlemlenmiş ve 3.2 sn - 4.8 sn'lik tahminler oluşturulmuştur. 
 
-#### 5.2. Egitim Sureci
-Veri seti indirildikten ve hazirlandiktan sonra ***python train*.*py*** scripti ile yeni model egitilmesi saglanir.
-Bu script uzerinde yapilacak degisiklikler ile calisilacak veri seti degistirilebilir. Script calistirildiktan sonra periyodik bir bicimde checkpoint dosyalari olusturulur (`checkpoint_with_model.pt` altinda model agirliklari ve optimizer'in state'i barinir,  `checkpoint_no_model.pt` altinda ise model agirliklarindan vb arinmis gorece sig bir checkpoint tutulur).
-Egitme surecine dair model mimarisini yapilandiracak, hyperparameter'larin ve I/O islemlerinin ayarlanmasinda kullanilacak bircok command-line flag mevcuttur.
+#### 5.2. Eğitim Süreci
+Veri seti indirildikten ve hazırlandıktan sonra ***python train*.*py*** script'i ile yeni model eğitilmesi sağlanır.
+Bu script üzerinde yapılacak değişiklikler ile calışılacak veri seti değiştirilebilir. Script çalıştırıldıktan sonra periyodik bir biçimde checkpoint dosyaları oluşturulur (`checkpoint_with_model.pt` altında model ağırlıkları ve optimizer'in state'i barınır,  `checkpoint_no_model.pt` altında ise model ağırlıklarından vb arınmış görece sığ bir checkpoint tutulur).
+Eğitme sürecine dair model mimarisini yapılandıracak, hyperparameter'ların ve I/O işlemlerinin ayarlanmasında kullanılacak birçok command-line flag mevcuttur.
 ##### 5.2.1. Optimizasyon
-- `--batch_size`: How many sequences to use in each minibatch during training. Varsayilan deger, 64.
-- `--num_iterations`: Egitim surecinde kullanilacak iterasyon sayisi. Varsayilan deger, 10000.
-- `--num_epochs`: Egitim surecinde kullanilacak iterasyon sayisi. Lakin bu defa epoch'lara bolunur. Her bir epoch icerisinde belirli sayida iterasyon gerceklestirilir. Varsayilan deger, 200.
+- `--batch_size`: Eğitim sürecinde her bir minibatch'te kaç adet sekans kullanılacağı. Varsayılan değer, 64.
+- `--num_iterations`: Eğitim sürecinde kullanılacak iterasyon sayısı. Varsayılan değer, 10000.
+- `--num_epochs`: Eğitim sürecinde kullanılacak iterasyon sayısı. Lakin bu defa epoch'lara bölünür. Her bir epoch içerisinde belirli sayıda iterasyon gerçekleştirilir. Varsayılan değer, 200.
 
-##### 5.2.2. Veri Seti Ayarlari
+##### 5.2.2. Veri Seti Ayarları
 
-- `--dataset_name`: Egitme surecinde kullanilacak veri seti. Varsayilan set, `zara1`.
-- `--delim`: Veri setinin dosyalarinda kullanilacak ayrac. Varsayilan deger, `' '`.
-- `--obs_len`: Girdi trajectory'lerde bulunacak zaman adimi miktari. Varsayilan deger, 8. 
-- `--pred_len`: Tahmin ciktilarinda bulunacak zaman adimi miktari. Varsayilan deger, 8.
-- `--loader_num_workers`: Veri yuklemede kullanilan arkaplan thread'lerinin sayisi. Varsayilan deger, 4.
-- `--skip`: Veri setini olustururken atlanacak frame miktari. Varsayilan deger, 1.
+- `--dataset_name`: Eğitme sürecinde kullanılacak veri seti. Varsayılan set, `zara1`.
+- `--delim`: Veri setinin dosyalarında kullanılacak ayraç. Varsayılan değer, `' '`.
+- `--obs_len`: Girdi trajectory'lerde bulunacak zaman adımı miktarı. Varsayılan değer, 8. 
+- `--pred_len`: Tahmin çıktılarında bulunacak zaman adımı miktari. Varsayılan değer, 8.
+- `--loader_num_workers`: Veri yüklemede kullanılan arkaplan thread'lerinin sayısı. Varsayılan değer, 4.
+- `--skip`: Veri setini oluştururken atlanacak frame miktari. Varsayılan değer, 1.
 
-##### 5.2.3. Model Ayarlari
-Bahsi gecen model 3 ayri bilesenden meydana gelmektedir.
+##### 5.2.3. Model Ayarları
+Bahsi geçen model 3 ayrı bileşenden meydana gelmektedir.
 -   Generator
 -   Pooling Module
 -   Discriminator
 
-Asagidaki hyperparameter'lar hem generator hem de discriminator kismi icin gecerlilerdir.
-- `--embedding_dim`: input (x, y) koordinatlari icin embedding layer'in boyutu. Varsayilan deger, 64.
-- `--num_layers`: LSTM hucresindeki katmanlarin sayisi. Yalnizca num_layers = 1 destekleniyor. Multi-layer RNN yaklasimi saglanmamis durumda.
-- `--dropout`: Dropout'u belirleyen Float deger. Varsayilan deger, 0 (no dropout).
-- `--batch_norm`: Batch Normalization yapilip yapilmadigina dair bir boolean flag. Varsayilan deger, False.
-- `--mlp_dim`: MLP boyutlarini belirleyen deger. Varsayilan deger, 1024.
+Aşağıdaki hyperparameter'lar hem generator hem de discriminator kısmı için geçerlilerdir.
+- `--embedding_dim`: input (x, y) koordinatları için embedding layer'in boyutu. Varsayılan değer, 64.
+- `--num_layers`: LSTM hücresindeki katmanların sayısı. Yalnızca num_layers = 1 destekleniyor. Multi-layer RNN yaklaşımı sağlanmamış durumda.
+- `--dropout`: Dropout'u belirleyen Float değer. Varsayılan değer, 0 (no dropout).
+- `--batch_norm`: Batch Normalization yapılıp yapılmadığına dair bir boolean flag. Varsayılan değer, False.
+- `--mlp_dim`: MLP boyutlarını belirleyen değer. Varsayılan değer, 1024.
 
-**Generator Ayarlari**: Generator yapisi verilen sekans icerisindeki tum trajectory'leri edinir ve simultane bir sekilde sosyal olarak kabuledilebilir trajectory'leri tahmin eder. Asagidaki flag'ler generator mimarisine ozgu hyperparameter'lari kontrol etmektedir:
-- `--encoder_h_dim_g`: Encoder'da bulunan hidden layer'in boyutunu belirler. Varsayilan deger, 64.
-- `--decoder_h_dim_g`: Decoder'da bulunan hidden layer'in boyutunu belirler. Varsayilan deger, 64.
-- `--noise_dim`: Decoder'in input'una eklenen gurultunun boyutlarini tutan tuple. Varsayilan deger, None.
-- `--noise_type`: Eklenecek gurultunun tipi. Iki opsiyon destekleniyor: *uniform* ve *gaussian*. Varsayilan deger, *gaussian*.
-- `--noise_mix_type`: Eklenen gurultu tum yayalar icin ayni olabilecegi gibi her sahsa ayri gurultu yaklasimi da mumkun. Desteklenen opsiyonlar: *global* ve *ped*. Varsayilan deger, *ped*.
-- `--clipping_threshold_g`: Gradient'lerin kirpilacagi esigi belirten float deger. Varsayilan deger, 0.
-- `--g_learning_rate`: Generator icin ogrenme katsayisi. Varsilan deger, 5e-4. Kullanilan optimizer `Adam`.
-- `--g_steps`: Generator uzerinde her bir iterasyonda gerceklesecek g_steps miktarinda forward backward pass gerceklesir. Varsayilan deger, 1.
+**Generator Ayarları**: Generator yapısı verilen sekans içerisindeki tüm trajectory'leri edinir ve simültane bir şekilde sosyal olarak kabul edilebilir trajectory'leri tahmin eder. Aşağıdaki flag'ler generator mimarisine özgü hyperparameter'ları kontrol etmektedir:
+- `--encoder_h_dim_g`: Encoder'da bulunan hidden layer'ın boyutunu belirler. Varsayılan değer, 64.
+- `--decoder_h_dim_g`: Decoder'da bulunan hidden layer'ın boyutunu belirler. Varsayılan değer, 64.
+- `--noise_dim`: Decoder'ın input'una eklenen gürültünün boyutlarını tutan tuple. Varsayılan değer, None.
+- `--noise_type`: Eklenecek gürültünün tipi. İki opsiyon destekleniyor: *uniform* ve *gaussian*. Varsayılan değer, *gaussian*.
+- `--noise_mix_type`: Eklenen gürültü tüm yayalar için aynı olabileceği gibi her şahsa ayrı gürültü yaklaşımı da mümkün. Desteklenen opsiyonlar: *global* ve *ped*. Varsayılan değer, *ped*.
+- `--clipping_threshold_g`: Gradient'lerin kırpılacağı eşiği belirten float değer. Varsayılan değer, 0.
+- `--g_learning_rate`: Generator icin öğrenme katsayısı. Varsayılan değer, 5e-4. Kullanılan optimizer `Adam`.
+- `--g_steps`: Generator üzerinde her bir iterasyonda gerçekleşecek g_steps miktarında forward backward pass gerçekleşir. Varsayılan değer, 1.
 
-**Pooling Ayarlari**: Jenerik tasarimlari sayesinde herhangi bir pooling turu desteklenebilir. Iki adet pooling modulu hali hazirda desteklenmekte: 
+**Pooling Ayarları**: Jenerik tasarımları sayesinde herhangi bir pooling türü desteklenebilir. İki adet pooling modülü hali hazırda desteklenmekte: 
     
 - Social Pooling 
 - Pool Net. 
 
-Asagidaki flag'ler pooling modulune ozgu hyperparameter'lari kontrol etmektedir:
-- `--pooling_type`: Kullanilacak pooling modulunun tipi. "pool_net" ve "spool" desteklenmekte. Varsayilan ayar, "pool_net".
-- `--pool_every_timestep`: Hidden state'ler her bir zaman adiminda veya her bir obs_len adim atildiktan sonra toplanabilir. Varsayilan deger, False.
-- `--bottleneck_dim`: Pool Net adina Pool'lanan vektorun cikti boyutu. Varsayilan deger, 1024.
-- `--neighborhood_size`: Social Pooling icin komsuluk bolgesi boyutu. S-LSTM makalesi bu konuyu acikliyor. Varsayilan deger, 2.
-- `--grid_size`: Komsuluk bolgesi grid_size x grid_size grid'lere boluntmustur. Varsayilan deger, 8.
+Aşağıdaki flag'ler pooling modülüne özgü hyperparameter'ları kontrol etmektedir:
+- `--pooling_type`: Kullanılacak pooling modülünün tipi. "pool_net" ve "spool" desteklenmekte. Varsayılan ayar, "pool_net".
+- `--pool_every_timestep`: Hidden state'ler her bir zaman adımında veya her bir obs_len adım atıldıktan sonra toplanabilir. Varsayılan değer, False.
+- `--bottleneck_dim`: Pool Net adına Pool'lanan vektörün çıktı boyutu. Varsayılan değer, 1024.
+- `--neighborhood_size`: Social Pooling için komşuluk bölgesi boyutu. S-LSTM makalesi bu konuyu açıklıyor. Varsayılan değer, 2.
+- `--grid_size`: Komşuluk bölgesi grid_size \* grid_size grid'lere bölünmüştür. Varsayılan değer, 8.
 
-**Discriminator Ayarlari**: Asagidaki flag'ler discriminator mimarisine ozgu hyperparameter'lari kontrol etmektedir:
-- `--d_type`: Discriminator ya her bir trajectory'yi bagimsiz bir sekilde ele alir ya da generator mantigina yakin bir sekilde tum trajectory'lere dair bilgi pool'lanir ve ilgili konfigurasyonun gercek mi sahte mi olduguna dair karar verilir. Birincisi *local*, ikincisi *global* ayarlardir. Varsayilan ayar, "local".
-- `--encoder_h_dim_d`:  Encoder'da bulunan hidden layer'in boyutunu belirler. Varsayilan deger, 64.
-- `--d_learning_rate`: Discriminator icin ogrenme katsayisi. Varsayilan deger, 5e-4. Kullanilan optimizer `Adam`.
-- `--d_steps`: Discriminator uzerinde her bir iterasyonda gerceklesecek d_steps miktarinda forward backward pass gerceklesir. Varsayilan deger, 2.
-- `--clipping_threshold_d`: Gradient’lerin kirpilacagi esigi belirten float deger. Varsayilan deger, 0.
+**Discriminator Ayarları**: Aşağıdaki flag'ler discriminator mimarisine özgü hyperparameter'ları kontrol etmektedir:
+- `--d_type`: Discriminator ya her bir trajectory'yi bağımsız bir şekilde ele alır ya da generator mantığına yakın bir şekilde tüm trajectory'lere dair bilgi pool'lanır ve ilgili konfigürasyonun gerçek mi sahte mi olduğuna dair karar verilir. Birincisi *local*, ikincisi *global* ayarlardır. Varsayılan ayar, "local".
+- `--encoder_h_dim_d`:  Encoder'da bulunan hidden layer'ın boyutunu belirler. Varsayılan değer, 64.
+- `--d_learning_rate`: Discriminator için öğrenme katsayısı. Varsayılan değer, 5e-4. Kullanılan optimizer `Adam`.
+- `--d_steps`: Discriminator üzerinde her bir iterasyonda gerçekleşecek d_steps miktarında forward backward pass gerçekleşir. Varsayılan değer, 2.
+- `--clipping_threshold_d`: Gradient’lerin kırpılacağı eşiği belirten float değer. Varsayılan değer, 0.
 
-##### 5.2.4. Output Ayarlari
-Asagidaki flag'ler training script'inin ciktilarini kontrol etmektedir: 
-- `--output_dir`: Checkpoint'lerin kaydedilecegi dizin. Varsayilan ayar, mevcut dizin.
-- `--print_every`: Egitme surecindeki loss'larin yazdirilma ve kayit edilme araligi. Varsayilan deger, 10 (her 10 iterasyonun ardindan).
-- `--timing`: Eger bu flag 1'e esitlenirse zaman olculur ve print edilir.
-- `--checkpoint_every`: Her `N` iterasyonda bir kaydetme islemi gerceklestirilir. Varsayilan deger, 100. Her bir checkpoint, training loss'larini, ADE ve FDE errorlerini, generator/discriminator ve optimizer state'lerini, ve eger egitme sureci sekteye ugrarsa kaldigi yerden devam edebilmesi icin gereken diger bilgiler tutulur.
-- `--checkpoint_name`: Kaydedilen checkpoint'ler icin base dosya ismi; varsayilan deger 'checkpoint'.
-- `--restore_from_checkpoint`: Rutin davranis sifirdan egitmek ve eger mevcutsa output checkpoint path'inin uzerine yazmaktir. Eger bu flag 1'e esitse, bulunan checkpoint dosyasi ile egitme surecine kalinan yerden devam edilir. 
-- `--checkpoint_start_from`: Eger bu flag aktifse verilen checkpoint noktasinda egitme surecine devam edilir. Bu flag `--restore_from_checkpoint` flag'ine agir basar, eger her ikisi de aktifse. 
-- `--num_samples_check`: Training veri seti uzerinde  metrikler hesaplanirken, degerlendirmek icin istenilen ornek sayisini limitleyebiliriz. 
+##### 5.2.4. Output Ayarları
+Aşağıdaki flag'ler training script'inin çıktılarını kontrol etmektedir:
+- `--output_dir`: Checkpoint'lerin kaydedileceği dizin. Varsayılan ayar, mevcut dizin.
+- `--print_every`: Eğitme sürecindeki loss'ların yazdırılma ve kayıt edilme aralığı. Varsayılan değer, 10 (her 10 iterasyonun ardından).
+- `--timing`: Eğer bu flag 1'e eşitlenirse zaman ölçülür ve print edilir.
+- `--checkpoint_every`: Her `N` iterasyonda bir kaydetme işlemi gerçekleştirilir. Varsayılan değer, 100. Her bir checkpoint, training loss'larını, ADE ve FDE errorlerini, generator/discriminator ve optimizer state'lerini, ve eğer eğitme süreci sekteye uğrarsa kaldığı yerden devam edebilmesi için gereken diğer bilgiler tutulur.
+- `--checkpoint_name`: Kaydedilen checkpoint'ler için base dosya ismi; varsayılan değer 'checkpoint'.
+- `--restore_from_checkpoint`: Rutin davranış sıfırdan eğitmek ve eğer mevcutsa output checkpoint path'inin üzerine yazmaktır. Eğer bu flag 1'e eşitse, bulunan checkpoint dosyası ile eğitme sürecine kalınan yerden devam edilir.
+- `--checkpoint_start_from`: Eğer bu flag aktifse verilen checkpoint noktasında eğitme sürecine devam edilir. Bu flag `--restore_from_checkpoint` flag'ine ağır basar, eğer her ikisi de aktifse.
+- `--num_samples_check`: Training veri seti üzerinde metrikler hesaplanırken, değerlendirmek için istenilen örnek sayısını limitleyebiliriz.
