@@ -1,6 +1,6 @@
 # Social GAN
 
-Social GAN algoritmasinin ([Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks](https://arxiv.org/abs/1803.10892) (CVPR 2018) gerçeklenmesine dair çalışmalar bu repo'da toplanmistir.
+Social GAN algoritmasinin ([Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks](https://arxiv.org/abs/1803.10892), CVPR 2018) gerçeklenmesine dair çalışmalar bu repo'da toplanmistir.
 Kodun alındığı kaynak: https://github.com/agrimgupta92/sgan olarak belirtilebilir.
 
 Normal sartlar altinda, insan hareketi bireyler arasinda gerceklesen, bircok farkli davranisa evrilebilme potansiyeli olan ve sosyal adetlere uygun icra edilen bir surectir. Social GAN makalesinde, bahsi gecen bu karmasik konuya dair bir yaklasim sunulmustur. Bu yaklasimda, Sequence Prediction ve Generative Adversarial Networks konseptlerini birlikte kullanarak, bir recurrent sequence-to-sequence model elde edilmistir. Bu model hareket gecmislerini gozlemleyerek ve yayalara dair bilgileri toplama adina kullandigi pooling mekanizmasi sayesinde gelecege dair davranislari kestirmeyi amaclar. 
