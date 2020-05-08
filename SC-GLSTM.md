@@ -85,6 +85,7 @@ Raw data'dan veri elde etme surecine dair adimlar burada ozetlenmistir.
 <p align="center">
 <img src="figures/network.png">
 </p>
+Network Mimarisi gorselinde, i'inci road-agent icin Trajectory ve Behavior Prediction gosterilmedektedir (Traffic Graphs kismindaki kirmizi daire). Input'ta, T saniyelik gecmise dair uzaysal koordinatlarin yani sira traffic-graph'larin  ilk T traffic-graph'a tekabul eden eigenvector'leri de barinmaktadir (yesil dikdortgenler, her bir yesil tonu eigenvector'un index'ini temsil etmektedir). Hakiki loss fonksiyonunu regularize etmek ve uzun vadeli tahmin kalitesini artirma maksadiyla yeni loss fonksiyonu uzerinde backpropagation islemi gerceklestirmek icin, Stream 2 blogundan edinilen tahmin edilmis eigenvector'lerin uzerinde Spectral clustering teknigi icra edilir.  
 
 ## Diger Modellerle Kiyaslamalar
 ![comparison of our methods with other methods](figures/compare.png)
@@ -102,19 +103,19 @@ Raw data'dan veri elde etme surecine dair adimlar burada ozetlenmistir.
 
 ## Veri Setlerine Gore RMSE Sonuclari 
 
-##### Lyft 
+#### Lyft 
 
 <p align="center">
   <img src="figures/rmse_lyft.png">
 </p>
 
-##### Argoverse 
+#### Argoverse 
 
 <p align="center">
   <img src="figures/rmse_argo.png">
 </p>
 
-##### ApolloScape 
+#### ApolloScape 
 <p align="center">
   <img src="figures/rmse_apol.png">
 </p>
