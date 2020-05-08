@@ -1,6 +1,8 @@
 ### SC-GLSTM 
 SC-GLSTM algoritmasina dair ([**Forecasting Trajectory and Behavior of Road-Agents Using Spectral Clustering in Graph-LSTMs**](https://obj.umiacs.umd.edu/gamma-umd-website-imgs/pdfs/autonomousdriving/spectralcows_full.pdf)) calismalar bu repo'da toplanmistir.
+
 SC-GLSTM projesine **https://gamma.umd.edu/spectralcows** uzerinden de ulasilabilir. 
+
 Kodun alindigi repo: **https://github.com/rohanchandra30/Spectral-Trajectory-and-Behavior-Prediction**
 
 State of the Art'a eristikleri bir takim veri setleri ve challenge'lar:
