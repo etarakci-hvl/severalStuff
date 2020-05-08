@@ -95,18 +95,25 @@ Raw data'dan veri elde etme surecine dair adimlar burada ozetlenmistir.
 ![Trajectory Prediction Result](figures/spectral_cluster_regularization.png)
 
 ### Behavior Prediction Sonuclari
+
 <p align="center">
   <img src="figures/behaviors.png">
 </p>
+
 ## Veri Setlerine Gore RMSE Sonuclari 
+
 ##### Lyft 
+
 <p align="center">
   <img src="figures/rmse_lyft.png">
 </p>
+
 ##### Argoverse 
+
 <p align="center">
   <img src="figures/rmse_argo.png">
 </p>
+
 ##### ApolloScape 
 <p align="center">
   <img src="figures/rmse_apol.png">
