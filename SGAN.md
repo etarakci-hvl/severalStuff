@@ -8,13 +8,13 @@ Asagida, kompleks senaryolarda, model tarafindan uretilmis ve sosyal olarak kabu
 ![](images/2.png)
 ![](images/3.png)
 
-#### 1. Model
+### 1. Model
 Sunulan mimari 3 kisimdan meydana gelmektedir. Generator (G), Pooling Module (PM) ve Discriminator (D). Generator yapisi, Encoder ve Decoder'a dair Hidden State'lerin Pooling Module araciligiyla baglandigi Encoder-Decoder cercevesi uzerine oturur. Generator yapisi, bir mahalde bulunan yayalara dair trajectory'leri girdi olarak alir ve ilgili tahmin trajectory'lerini olusturur. Discriminator yapisi ise, tum sekansi, yani hem input trajectory'lerini hem de bu trajectory'lere dair tahminleri bir arada edinir ve gercek/sahte seklinde siniflandirir.
 ![Mimari](images/model.png)
 ![Pooling Module](images/PM.png)
 Makalede onerilen Pooling mekanizmasi (kirmizi noktali oklari) ile Social Pooling (kirmizi cizgili grid) yaklasiminin kirmizi insan icin kiyaslanmasini gormekteyiz. Onerilen metod kirmizi insan ile diger insanlar arasindaki relatif pozisyonlari hesaplar. Bu pozisyonlar her bir insanin hidden state'ine pespese eklenir. Sonrasinda bir MLP tarafindan bagimsiz bir sekilde islenir ve sonrasinda elementwise pool'lanarak kirmizi insanin pooling vector'u (P1) hesaplanir. Social Pooling sadece grid icersindeki insanlari hesaba katar ve her bir ikili arasindaki etkilesimi modelleyemez.
 
-#### 2. Setup
+### 2. Setup
 Bu calisma Ubuntu 16.04 uzerinde, Python 3.5 ve PyTorch 0.4 ile gerceklenmistir. Kodun alindigi repo'da onerilen kurulum adimlari su sekildedir.
 ```bash
 python3 -m venv env               # Create a virtual environment
@@ -25,11 +25,11 @@ echo $PWD > env/lib/python3.5/site-packages/sgan.pth  # Add current directory to
 deactivate  # Exit virtual environment
 ```
 
-#### 3. Pretrained Modeller
+### 3. Pretrained Modeller
 `bash download_models.sh` script'i ile pretrained modeller indirilebilir. Bu script asagidaki modelleri indirecektir.
 - `sgan-models/<dataset_name>_<pred_len>.pt`: 5 veri seti icin toplam 10 adet pretrained model barindirmaktadir. Bu modeller asagidaki tablolarin SGAN-20V-20 kismina tekabul eder.
 - `sgan-p-models/<dataset_name>_<pred_len>.pt`: 5 veri seti icin toplam 10 adet pretrained model barindirmaktadir. Bu modeller asagidaki tablolarin SGAN-20VP-20 kismina tekabul eder.
-
+#### Karsilastirma
 ![Karsilastirma](images/comparison.png)
 
 Kendi yontemlerini SGAN-kVP-N diye anmaktalar. kV ile vurgulanan modelin variety loss kullanilarak egitilip egitilmedigidir (k=1 variety loss yoktur demektir). P ise one surulen Pooling modulunun kullanilip kullanilmadigini vurgular. Test surecinde, nicel degerlendirme kapsaminda, coklu sample'lama yapilarak ve L2 normundaki en dogru tahmini kaale alarak ilerlenmistir. Son olarak N, test surecinde modelden kac defa sample alindigini belirtmektedir. t\_pred = 8 ve 12 icin, iki adet metre cinsinden error metrigi raporlanmistir: Average Displacement Error (ADE) and Final Displacement Error (FDE). Repo'daki kod, makaledeki sonuclardan daha olumlu sonuclar vermistir. print\_args kullanarak egitme surecinde kullanilan hyperparameter'lar elde edilebilir. Makalede onerildigi uzere, SGAN-20VP-20 icin, local yerine global kullanilmistir.
@@ -55,29 +55,29 @@ Kendi yontemlerini SGAN-kVP-N diye anmaktalar. kV ile vurgulanan modelin variety
 | `Zara2`| 0.24 |0.36|0.48 |0.73|
 
 
-#### 4. Modelleri Calistirmak Icin
+### 4. Modelleri Calistirmak Icin
 `evaluate_model.py` script'i ile herhangi bir veri seti uzerinde pretrained modelleri calistirmak mumkundur. Tum veri setleri icin, karsilastirma tablosundaki SGAN-20V-20 konfigurasyonundaki sonuclari elde etme adina asagidaki script calistirilir. 
 
 ```bash
 python evaluate_model.py --model_path models/sgan-models
 ```
-#### 5. Yeni Modellerin Egitilmesi
+### 5. Yeni Modellerin Egitilmesi
 Asagidaki adimlar takip edilerek egitme sureci gerceklestirilebilir. 
-##### 5.1. Veri Setlerinin Edinilmesi 
+#### 5.1. Veri Setlerinin Edinilmesi 
 ***bash scripts/download_data.sh*** calistirilarak veri setleri indirilir.
 Script calistirildiginda `datasets/<dataset_name>` klasoru altinda veri setleri `train/`, `val/`, `test/` ayrimi yapilmis halde bulunacaktir. Kullanilacak veri setleri, Dunya koordinatlarina -metrik sisteme- uygun olacak sekilde pre-process islemi gecirmistir. Calisilan algoritma kapsaminda 5 adet veri seti desteklenmektedir: ETH, ZARA1, ZARA2, HOTEL ve UNIV. 
 Egitme surecinde kullanilan leave-one-out yaklasimi uyarinca, her bir veri seti, 4 set training ve 1 set test icin kullanilmaktadir. Trajectory 8 zaman adimi boyunca gozlenir ve 8 ila 12 zaman adimi icin tahmin uretilir. 1 zaman adiminin 0.4 sn oldugu kabul edilmis; 3.2 sn gozlemlenmis ve 3.2 sn - 4.8 sn'lik tahminler olusturulmustur. 
 
-##### 5.2. Egitim Sureci
+#### 5.2. Egitim Sureci
 Veri seti indirildikten ve hazirlandiktan sonra ***python train*.*py*** scripti ile yeni model egitilmesi saglanir.
 Bu script uzerinde yapilacak degisiklikler ile calisilacak veri seti degistirilebilir. Script calistirildiktan sonra periyodik bir bicimde checkpoint dosyalari olusturulur (`checkpoint_with_model.pt` altinda model agirliklari ve optimizer'in state'i barinir,  `checkpoint_no_model.pt` altinda ise model agirliklarindan vb arinmis gorece sig bir checkpoint tutulur).
 Egitme surecine dair model mimarisini yapilandiracak, hyperparameter'larin ve I/O islemlerinin ayarlanmasinda kullanilacak bircok command-line flag mevcuttur.
-###### 5.2.1. Optimizasyon
+##### 5.2.1. Optimizasyon
 - `--batch_size`: How many sequences to use in each minibatch during training. Varsayilan deger, 64.
 - `--num_iterations`: Egitim surecinde kullanilacak iterasyon sayisi. Varsayilan deger, 10000.
 - `--num_epochs`: Egitim surecinde kullanilacak iterasyon sayisi. Lakin bu defa epoch'lara bolunur. Her bir epoch icerisinde belirli sayida iterasyon gerceklestirilir. Varsayilan deger, 200.
 
-###### 5.2.2. Veri Seti Ayarlari
+##### 5.2.2. Veri Seti Ayarlari
 
 - `--dataset_name`: Egitme surecinde kullanilacak veri seti. Varsayilan set, `zara1`.
 - `--delim`: Veri setinin dosyalarinda kullanilacak ayrac. Varsayilan deger, `' '`.
@@ -86,7 +86,7 @@ Egitme surecine dair model mimarisini yapilandiracak, hyperparameter'larin ve I/
 - `--loader_num_workers`: Veri yuklemede kullanilan arkaplan thread'lerinin sayisi. Varsayilan deger, 4.
 - `--skip`: Veri setini olustururken atlanacak frame miktari. Varsayilan deger, 1.
 
-###### 5.2.3. Model Ayarlari
+##### 5.2.3. Model Ayarlari
 Bahsi gecen model 3 ayri bilesenden meydana gelmektedir.
 -   Generator
 -   Pooling Module
@@ -128,7 +128,7 @@ Asagidaki flag'ler pooling modulune ozgu hyperparameter'lari kontrol etmektedir:
 - `--d_steps`: Discriminator uzerinde her bir iterasyonda gerceklesecek d_steps miktarinda forward backward pass gerceklesir. Varsayilan deger, 2.
 - `--clipping_threshold_d`: Gradient’lerin kirpilacagi esigi belirten float deger. Varsayilan deger, 0.
 
-###### 5.2.4. Output Ayarlari
+##### 5.2.4. Output Ayarlari
 Asagidaki flag'ler training script'inin ciktilarini kontrol etmektedir: 
 - `--output_dir`: Checkpoint'lerin kaydedilecegi dizin. Varsayilan ayar, mevcut dizin.
 - `--print_every`: Egitme surecindeki loss'larin yazdirilma ve kayit edilme araligi. Varsayilan deger, 10 (her 10 iterasyonun ardindan).
