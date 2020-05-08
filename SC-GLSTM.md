@@ -89,12 +89,13 @@ Network Mimarisi gorselinde, i'inci road-agent icin Trajectory ve Behavior Predi
 
 ## Diger Modellerle Kiyaslamalar
 ![comparison of our methods with other methods](figures/compare.png)
-
+Trajectory Prediction metodlarina dair Average Displacement Error (ADE) ve Final Displacement Error (FDE) hata sonuclari raporlanmistir. Dusuk skorlar daha iyiyi niteler ve kalin yazilmis sonuclar SOTA sonuclardir. Makalenin yazarlari, en dusuk ADE/FDE sonuclarina erismenin yani sira, uzun vadeli tahmin sonuclarindaki hata paylarini da 5 kat dusurduklerini iddia etmektedirler. Asteriks (∗) sembolu tahmin suresince yakinsayamayan metodlari vurgular.
 ## Bir Takim Sonuclar
 
 ### Trajectory Prediction Sonucu
 ![Trajectory Prediction Result](figures/spectral_cluster_regularization.png)
 
+Nitel Analiz: Tahmin edilen trajectory, Ground Truth trajectory (cyan koordinatlarin ile yesil rota cizgisi) ile kiyaslanmaktadir. Tahmin suresi 5 saniyedir. Figurde gorulen her bir kirmizi bolge tahmin edilmis Bivariate Gaussian Distribution'i *N(µ∗, σ∗, ρ∗)* temsil eder. 
 ### Behavior Prediction Sonuclari
 
 <p align="center">
