@@ -110,17 +110,17 @@ Tahmin penceresi Lyft ve ApolloScape veri setleri icin 5 saniye, Argoverse veri 
 #### Lyft 
 
 <p align="center">
-  <img src="figures/rmse_lyft.png">
+  <img src="figures/rmse_lyft.png" width="300">
 </p>
 
 #### Argoverse 
 
 <p align="center">
-  <img src="figures/rmse_argo.png">
+  <img src="figures/rmse_argo.png" width="300">
 </p>
 
 #### ApolloScape 
 <p align="center">
-  <img src="figures/rmse_apol.png">
+  <img src="figures/rmse_apol.png" width="300">
 </p>
 
