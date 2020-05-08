@@ -5,8 +5,10 @@ Kodun alındığı kaynak: https://github.com/agrimgupta92/sgan olarak belirtile
 
 Normal sartlar altinda, insan hareketi bireyler arasinda gerceklesen, bircok farkli davranisa evrilebilme potansiyeli olan ve sosyal adetlere uygun icra edilen bir surectir. Social GAN makalesinde, bahsi gecen bu karmasik konuya dair bir yaklasim sunulmustur. Bu yaklasimda, Sequence Prediction ve Generative Adversarial Networks konseptlerini birlikte kullanarak, bir recurrent sequence-to-sequence model elde edilmistir. Bu model hareket gecmislerini gozlemleyerek ve yayalara dair bilgileri toplama adina kullandigi pooling mekanizmasi sayesinde gelecege dair davranislari kestirmeyi amaclar. 
 Asagida, kompleks senaryolarda, model tarafindan uretilmis ve sosyal olarak kabul edilebilir olarak nitelendirilen tahminleri gormekteyiz. Her bir insan farkli bir renkle belirtilir. Gozlem verisi noktalarla, tahmin verisi yildizlarla gosterilmektedir.
-![gif1](images/2.png)
-![gif2](images/3.png)
+<div align='center'>
+<img src="images/2.gif"></img>
+<img src="images/3.gif"></img>
+</div>
 
 ### 1. Model
 Sunulan mimari 3 kisimdan meydana gelmektedir. Generator (G), Pooling Module (PM) ve Discriminator (D). Generator yapisi, Encoder ve Decoder'a dair Hidden State'lerin Pooling Module araciligiyla baglandigi Encoder-Decoder cercevesi uzerine oturur. Generator yapisi, bir mahalde bulunan yayalara dair trajectory'leri girdi olarak alir ve ilgili tahmin trajectory'lerini olusturur. Discriminator yapisi ise, tum sekansi, yani hem input trajectory'lerini hem de bu trajectory'lere dair tahminleri bir arada edinir ve gercek/sahte seklinde siniflandirir.
