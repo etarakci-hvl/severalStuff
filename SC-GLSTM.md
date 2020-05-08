@@ -103,9 +103,10 @@ Nitel Analiz: Tahmin edilen trajectory, Ground Truth trajectory (cyan koordinatl
 <p align="center">
   <img src="figures/behaviors.png">
 </p>
+Sirasiyla Lyft, Argoverse, and Apolloscape veri setlerinden secilen birer videoda bulunan tum road-agent'lar icin 3 adet davranis siniflandirmasi yapilmistir: overspeeding (mavi), neutral (yesil), ve braking (kirmizi). y-ekseni θ' parametresini, x-ekseni road-agent'lari gostermektedir. 
 
 ## Veri Setlerine Gore RMSE Sonuclari 
-
+Tahmin penceresi Lyft ve ApolloScape veri setleri icin 5 saniye, Argoverse veri seti icinse 3 saniyedir. Sirasiyla 30, 10 ve 30 frame length'lere tekabul ederler.
 #### Lyft 
 
 <p align="center">
