@@ -1,6 +1,6 @@
 # D* Lite Algoritması ve Uygulaması
 
-Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star-lite), [İkincil Kaynak](https://github.com/GBJim/d-star-lite), [Ek Kaynak](https://github.com/azampagl/robotics-d-star-lite), [EK-2](https://github.com/ArekSredzki/dstar-lite)
+Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star-lite), [İkincil Kaynak](https://github.com/GBJim/d-star-lite), [Ek Kaynak](https://github.com/azampagl/robotics-d-star-lite), [Ek Kaynak 2](https://github.com/ArekSredzki/dstar-lite)
 
 Yararlanılan Makaleler: [D* Lite](http://idm-lab.org/bib/abstracts/papers/aaai02b.pdf)
 
