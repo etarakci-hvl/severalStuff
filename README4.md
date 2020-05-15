@@ -4,7 +4,7 @@ Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star
 Yararlanılan Makaleler: [D* Lite](http://idm-lab.org/bib/abstracts/papers/aaai02b.pdf)
 
 D* Lite algoritmasi bilinmeyen arazilerde hizli bir sekilde yeniden planlama yapabilen bir robotik navigasyon 
-algoritmasi olarak dusunulebilir. Focused Dynamic A* (D*) algoritmasiyla ayni navigasyon stratejilerine sahiptir. Her ikisi algoritma da hedef (goal) vertex'ten robotun bulundugu vertex'e dogru bir search (arama) yapar, aramayi odakli (focused) bir hale sokmak icin heuristic'ler kullanilir, yakin metodlarla priority queue uzerinde yapilan reordering sureci minimize edilmeye calisilir. D* Lite algoritmasi LPA* (Lifelong Planning A*: A*'in incremental versiyonudur ve tum cizgenin hesaplanmasini gerektirmeden degisikliklere adapte olur) uzerine insaa edilmistir. D* ile D* Lite bu noktada ayrilir. Lakin, D* Lite, D* kadar etkin calismaktadir.  
+algoritmasi olarak dusunulebilir. Focused Dynamic A* (D*) algoritmasiyla ayni navigasyon stratejilerine sahiptir. Her iki algoritma da hedef (goal) vertex'ten robotun bulundugu vertex'e dogru bir search (arama) yapar. Aramayi, odakli (focused) bir hale sokmak icin heuristic'ler kullanilir. Yakin metodlarla priority queue uzerinde yapilan reordering sureci, minimize edilmeye calisilir. D* Lite algoritmasi LPA* (Lifelong Planning A*: A*'in incremental versiyonudur ve tum cizgenin hesaplanmasini gerektirmeden degisikliklere adapte olur) uzerine insaa edilmistir. D* ile D* Lite bu noktada ayrilir. Lakin, D* Lite, D* kadar etkin calismaktadir.  
 
 ## D* Lite Algoritmasi
 
