@@ -1,6 +1,7 @@
 # D* Lite Algoritması ve Uygulaması
 
-Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star-lite), [İkincil Kaynak](https://github.com/GBJim/d-star-lite), [Ek Kaynak](https://github.com/azampagl/robotics-d-star-lite)
+Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star-lite), [İkincil Kaynak](https://github.com/GBJim/d-star-lite), [Ek Kaynak](https://github.com/azampagl/robotics-d-star-lite), [EK-2](https://github.com/ArekSredzki/dstar-lite)
+
 Yararlanılan Makaleler: [D* Lite](http://idm-lab.org/bib/abstracts/papers/aaai02b.pdf)
 
 D* Lite algoritması bilinmeyen arazilerde hızlı bir şekilde yeniden planlama yapabilen bir robotik navigasyon
