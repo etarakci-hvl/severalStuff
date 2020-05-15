@@ -11,8 +11,11 @@ Aşağıda konfigürasyonun değişmesi üzerine replaning ismi verilen yeniden 
 
 <img src="https://github.com/etarakci-hvl/severalStuff/blob/master/DStarLite.png" width="600">
 
-## D* Lite Algoritmasi
+## D* Lite Algoritması
 
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/DStarLiteAlg.png" width="600">
+
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/DStarLiteOptimized.png" width="600">
 
 ## Uygulamaya Dair Bazı Notlar
 Kodun alındığı kaynak birinci kaynaktır. Fakat, hesaplamaların yayılımının anlaşılması için ikinci kaynaktaki gösterimler de göz önünde bulundurulmalıdır.
