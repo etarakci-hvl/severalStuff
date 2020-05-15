@@ -5,7 +5,11 @@ Kodun alındığı repository: [Birincil Kaynak](https://github.com/mdeyo/d-star
 Yararlanılan Makaleler: [D* Lite](http://idm-lab.org/bib/abstracts/papers/aaai02b.pdf)
 
 D* Lite algoritması bilinmeyen arazilerde hızlı bir şekilde yeniden planlama yapabilen bir robotik navigasyon
-algoritması olarak düşünülebilir. Focused Dynamic A* (D*) algoritmasıyla aynı navigasyon stratejilerine sahiptir. Her iki algoritma da hedef (goal) vertex'ten robotun bulunduğu vertex'e doğru bir search (arama) yapar. Aramayı, odaklı (focused) bir hale sokmak için heuristic'ler kullanılır. Yakın metodlarla priority queue üzerinde yapılan reordering süreci, minimize edilmeye çalışılır. D* Lite algorıtması LPA* (Lifelong Planning A*: A*'ın incremental versiyonudur ve tüm çizgenin hesaplanmasını gerektirmeden değişikliklere adapte olur) üzerine inşa edilmiştir. D* ile D* Lite bu noktada ayrılır. Lakin, D* Lite, D* kadar etkin çalışmaktadır.
+algoritması olarak düşünülebilir. Focused Dynamic A* (D*) algoritmasıyla aynı navigasyon stratejilerine sahiptir. Her iki algoritma da hedef (goal) vertex'ten robotun bulunduğu vertex'e doğru bir search (arama) yapar. Aramayı, odaklı (focused) bir hale sokmak için heuristic'ler kullanılır. Yakın metodlarla priority queue üzerinde yapılan reordering süreci, minimize edilmeye çalışılır. D* Lite algorıtması LPA* (Lifelong Planning A*: A*'ın incremental versiyonudur ve tüm çizgenin hesaplanmasını gerektirmeden değişikliklere adapte olur) üzerine inşa edilmiştir. D* ile D* Lite bu noktada ayrılır. Lakin, D* Lite, D* kadar etkin çalışmaktadır. 
+
+Aşağıda konfigürasyonun değişmesi üzerine replaning ismi verilen yeniden planlama sürecine dair sade bir çıktı görmekteyiz. Bu tarz bir esneklik, ileride global planlama yaparken trafik vs. gibi değişkenliklere uyum sağlayarak çevik sonuçlar almamıza yardımcı olacaktır.
+
+<img src="https://github.com/etarakci-hvl/severalStuff/blob/master/DStarLite.png" width="600">
 
 ## D* Lite Algoritmasi
 
